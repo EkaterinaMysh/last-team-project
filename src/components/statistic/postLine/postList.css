@@ -1,0 +1,46 @@
+.post {
+    padding: 15px;
+    border: 2px solid teal;
+    margin-top: 15px;
+    align-items: center;
+    width: calc(100% - 30px - 10px);
+    box-shadow: 0px 5px 5px gray;
+}
+
+.post__btns {
+    width: 100%;
+    align-items: center;
+}
+
+.counters{
+    display: flex;
+    justify-content: space-between;
+}
+
+.list__post{
+    width: calc(70% + 13px);
+    background-color: white;
+    border: 13px green;
+    padding: 2% 5%;
+
+}
+
+.post__header{
+    display: flex;
+    justify-content: space-between;
+    color: dodgerblue;
+}
+
+.post__btns__take{
+    background-color: dodgerblue;
+    color: whitesmoke;
+    border: 0px;
+    border-radius: 10px;
+    padding: 1% 2%;
+}
+
+.list__post__title{
+    font-size: 30px;
+    text-align: center;
+    margin-top: 0px;
+}
