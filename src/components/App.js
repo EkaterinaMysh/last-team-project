@@ -17,7 +17,7 @@ function Auth(){
 function App() {
     const isAuth = useSelector(state => state.user.isAuth)
     const dispatch = useDispatch()
-
+    //const isAuth = 1
     return (
 
         <BrowserRouter>
@@ -26,12 +26,7 @@ function App() {
                 <div className={"container"}>
 
                     <div className={"logo"}>
-                        <img src={Logo} alt="" className="glitch__logo"/>
-                        <div className={"logo__des"}>
-                            <h1>Glitch Speech</h1>
-                            <p>Наблюдайте за вашей<br/>речью каждый день</p>
 
-                        </div>
                     </div>
                     <div className='app'>
                         <Navbar/>

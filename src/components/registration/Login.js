@@ -15,7 +15,7 @@ const Login = () => {
         <div className={"container__auth"}>
             {!isCreate &&
                 <div className='authorization'>
-                    <h2>Welcome to <nobr>Glitch Speech!</nobr></h2>
+                    <h2>Welcome to <nobr>RAYBEEVO!</nobr></h2>
                     <div className="authorization__header">Вход в систему</div>
                     <p>Логин</p>
                     <Input value={log} setValue={setLogin} type="text" placeholder="Введите login..."/>
@@ -28,7 +28,7 @@ const Login = () => {
             }
             {isCreate &&
                 <div className={"fa"}>
-                    <h2>Welcome to <nobr>Glitch Speech!</nobr></h2>
+                    <h2>Welcome to <nobr>RAYBEEVO!</nobr></h2>
                     <div className="fa__header">Вам на почту отправлен код подтверждения</div>
                     <p>Код</p>
                     <Input value={token} setValue={setToken} type="text" placeholder="Введите код..."/>

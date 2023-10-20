@@ -3,7 +3,7 @@ import {setUser,createUser} from "../reducers/userReducer";
 import getBrowserFingerprint from "get-browser-fingerprint";
 
 let timer = null;
-const domen='https://api-glitchspeech.herokuapp.com'
+const domen='http://192.168.7.185:8080'
 
 function showError(message) {
     if (timer !== null) {
@@ -17,10 +17,10 @@ function showError(message) {
     timer = setTimeout(function(){ errorElement.style.display = 'none'; }, 5000);
 }
 
-export const registration = (login, password,email) => {
+export const registration = (fio,login, password,number,email) => {
     return async dispatch => {try {
-        const response = await axios.post(domen+'/users/register', {
-            "login":login,"password":password,"mail":email
+        const response = await axios.post(domen+'/register', {
+            "password":password,"email":email,"login":login, 'name':fio,'phone_number':number
         })
         if(response.status===201) {
             dispatch(createUser());

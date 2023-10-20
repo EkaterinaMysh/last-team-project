@@ -6,6 +6,8 @@ import {useDispatch, useSelector} from "react-redux";
 
 const Registration = () => {
         const [email, setEmail] = useState("")
+        const [fio, setFio] = useState("")
+        const [number, setNumber] = useState("")
         const [password, setPassword] = useState("")
         const [login, setLogin] = useState("")
         const dispatch = useDispatch()
@@ -25,19 +27,23 @@ const Registration = () => {
             <div className={"container__reg"}>
                 {!isCreate &&
                     <div className='registration'>
-                        <h2>Welcome to <nobr>Glitch Speech!</nobr></h2>
+                        <h2>Welcome to <nobr>RAYBEEVO</nobr></h2>
                         <div className="registration__header">Регистрация аккаунта</div>
                         <div id="errordiv" align="center" style={divError}>
                             <span id="error" style={divStyle}></span>
                         </div>
+                        <p>ФИО</p>
+                        <Input value={fio} setValue={setFio} type="text" placeholder="Введите ФИО..."/>
                         <p>Логин</p>
                         <Input value={login} setValue={setLogin} type="text" placeholder="Введите login..."/>
+                        <p>Номер телефона</p>
+                        <Input value={number} setValue={setNumber} type="text" placeholder="Введите номер телефона..."/>
                         <p>Почта</p>
                         <Input value={email} setValue={setEmail} type="text" placeholder="Введите email..."/>
                         <p>Пароль</p>
                         <Input value={password} setValue={setPassword} type="password" placeholder="Введите пароль..."/>
                         <div className={"registration__div__btn"}>
-                                <button className="registration__btn" onClick={() =>dispatch(registration( login, password,email))}>Зарегистрироваться</button>
+                                <button className="registration__btn" onClick={() =>dispatch(registration( fio,login, password,number, email))}>Зарегистрироваться</button>
                         </div>
 
                     </div>
