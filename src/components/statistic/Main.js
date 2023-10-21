@@ -1,16 +1,24 @@
 import React, {useState,useRef,useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
+import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
 import {getFiles, checkFile} from "../../actions/stat";
-
+import MyProfile from "./myProfile/MyProfile";
 import Load from "./load/Load";
 
 import {uploadFile} from "../../actions/stat";
-import {logout} from "../../reducers/userReducer"
+import {logout, setUser} from "../../reducers/userReducer"
 import './Main.css';
 import Person from '../../assets/img/person.png';
 import Logo from "../../assets/img/logo_main.png";
 import PostList from "./postLine/PostList";
+import {NavLink} from "react-router-dom";
 import {login} from "../../actions/user";
+import NavbarReg from "../navbarReg/NavbarReg";
+import Registration from "../registration/Registration";
+import Home from "./home/Home"
+import Login from "../registration/Login";
+import Navbar from "./navbar/Navbar";
+import Feed from "./feed/Feed";
 
 const Main = () => {
     const dispatch = useDispatch()
@@ -28,8 +36,12 @@ const Main = () => {
 
     //}
 
-    //const nameP = useSelector(state => state.user.currentUser)
-    const nameP = 'admin'
+    useEffect(()=>{
+        dispatch(setUser('admin','anna','111','mail','3','4'))
+    })
+
+    const nameP = '/'+useSelector(state => state.user.currentUser)
+    //const nameP = setUser('admin')
     //const post = useSelector(state => state.home.posts)
     const [post, setPosts]=useState([
         {id: 1, mail: '@@@@@', title: 'Java Script', body: 'a programming language', photo: ''},
@@ -39,40 +51,32 @@ const Main = () => {
         {id: 5, mail: '@@@@@', title: 'C#', body: 'a programming language', photo: ''}
     ]);
     return (
-        <div className="main__screen">
 
-            <div className="main">
-                <div className="main__toolbar">
-                    <img src={Logo} alt="" className="main__logo" />
-                    <div className='main__toolbar__menu'>
-                        <button className="logout__btn" onClick={() => dispatch(logout())}>
-                            Home
-                        </button>
-                        <button className="logout__btn" onClick={() => dispatch(logout())}>
-                            Feed
-                        </button>
-                        <button className="logout__btn" onClick={() => dispatch(logout())}>
-                            Logout
-                        </button>
+        <BrowserRouter>
 
+
+                <div className={"container"}>
+
+
+                    <div className='app'>
+                        <Navbar/>
+
+                        <div className="wrap">
+                            <Switch>
+                                <Route path="/home" component={Home}/>
+                                <Route path="/feed" component={Feed}/>
+                                <Route path={nameP} component={MyProfile}/>
+                                <Redirect to='/home'/>
+                            </Switch>
+
+                        </div>
                     </div>
-                    <div className='main__toolbar__user'>
-                        <div className="main__name">{nameP}</div>
-                        <img src={Person} alt="" className="main__person"/>
-                    </div>
-
 
                 </div>
-                <div className="main__content">
-                    <PostList post={post} title="Recent posts"/>
-                </div>
-                <footer className="main__footer">
-                    <div className="main__footer__content">
-                        Рябеево, Тверская обл., 170524
-                    </div>
-                </footer>
-            </div>
-        </div>
+
+
+
+        </BrowserRouter>
 
     );
 

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './App.css'
-import Navbar from "./navbar/Navbar";
+import NavbarReg from "./navbarReg/NavbarReg";
 import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
 import Registration from "./registration/Registration";
 import Login from "./registration/Login";
@@ -15,9 +15,9 @@ function Auth(){
 }
 
 function App() {
-    const isAuth = useSelector(state => state.user.isAuth)
+    //const isAuth = useSelector(state => state.user.isAuth)
     const dispatch = useDispatch()
-    //const isAuth = 1
+    const isAuth = 1
     return (
 
         <BrowserRouter>
@@ -29,7 +29,7 @@ function App() {
 
                     </div>
                     <div className='app'>
-                        <Navbar/>
+                        <NavbarReg/>
                         <div className="wrap">
                             <Switch>
                                 <Route path="/registration" component={Registration}/>

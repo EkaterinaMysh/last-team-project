@@ -26,29 +26,13 @@
     border-top: 2px #F9F8FE solid;
 }
 
+
 .main__footer__content{
     font-size: 80%;
     margin-top: 10px;
 }
 
-.main__toolbar__user{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
 
-.main__toolbar__menu{
-    display: flex;
-    flex-direction: row;
-
-}
-
-.main__toolbar__menu a, .logout__btn{
-    margin: 0px;
-    border: 0px;
-    font-size: 70%;
-    border-radius: 0px;
-}
 
 .main__stat{
     min-width: calc(76% - 1px);
@@ -70,22 +54,9 @@
     background-color: #E1E1FF;
 }
 
-.main__toolbar{
-    width: 100%;
-    height: calc(50px - 2px);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px #F9F8FE solid;
-    font-family: "AvertaBold1", sans-serif;
-    font-size: 1.3rem;
-    color: black;
-}
 
-.main__person{
 
-    margin: 20px;
-}
+
 
 .main__load{
     display: flex;
@@ -179,11 +150,7 @@
 .main__logo__bottom{
     min-width: 35px;
 }
-.main__logo{
-    min-width: 30px;
-    padding: 0;
-    height: calc(50px - 2px);
-}
+
 
 .dropdown {
     min-width: calc(60px - 20px);
@@ -231,17 +198,7 @@
     margin-bottom: 8px;
 }
 
-.logout__btn{
-    background-color: white;
-    border: 0;
-    padding: 0;
-    margin: 5px;
-    color: #747474;
-}
 
-.logout__btn:hover{
-    cursor: pointer;
-}
 
 .main__img__logout{
 }

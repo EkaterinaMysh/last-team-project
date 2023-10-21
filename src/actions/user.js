@@ -1,6 +1,8 @@
 import axios from 'axios'
 import {setUser,createUser} from "../reducers/userReducer";
 import getBrowserFingerprint from "get-browser-fingerprint";
+import jwt_decode from "jwt-decode";
+import {setFiles} from "../reducers/fileReducer";
 
 let timer = null;
 const domen='http://192.168.7.185:8080'
@@ -73,6 +75,39 @@ export const fa =  (login,password,token) => {
         } catch (e) {
             alert(e.response.data.message)
             localStorage.removeItem('token')
+        }
+    }
+}
+
+export function getInfo(name) {
+    return async dispatch => {
+        try {
+            let token = localStorage.getItem('token');
+            let decodedToken = jwt_decode(token);
+            console.log("Decoded Token", decodedToken);
+            let currentDate = new Date();
+
+            // JWT exp is in seconds
+            if (decodedToken.exp * 1000 < currentDate.getTime()) {
+                console.log("Token expired.");
+                const fingerprint = getBrowserFingerprint();
+                const refresh = await axios.post(domen+'/users/refresh', {
+                    "fingerprint":fingerprint},{ withCredentials: true
+                })
+                localStorage.setItem('token', refresh.data.jwtToken);
+            }
+            const response = await axios.get(domen+'/get_user_info/'+name, {
+                headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+            })
+
+            //alert(response.oldData)
+            //alert("ok")
+
+            dispatch(setUser(response.data.login, response.data.name, response.data.number,
+                response.data.email, response.data.followers,
+                response.data.following))
+        } catch (e) {
+            //alert(e.response.data.message)
         }
     }
 }

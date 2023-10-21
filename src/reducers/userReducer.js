@@ -8,6 +8,11 @@ const defaultState = {
         :
         {}
     ,
+    name: [],
+    number: [],
+    email: [],
+    followers: [],
+    following: [],
     isAuth: (localStorage.getItem('token')!=null),
     isCreate: false
 }
@@ -17,7 +22,12 @@ export default function userReducer(state = defaultState, action) {
         case SET_USER:
             return {
                 ...state,
-                currentUser: action.payload,
+                currentUser: action.user,
+                name: action.name,
+                number: action.number,
+                email: action.email,
+                followers: action.followers,
+                following: action.following,
                 isAuth: true
             }
         case CREAT_USER:
@@ -39,6 +49,14 @@ export default function userReducer(state = defaultState, action) {
     }
 }
 
-export const setUser = user => ({type: SET_USER, payload: user})
+export const setUser = (login, name, number, email, followers, following) => ({
+    type: SET_USER,
+    user: login,
+    name: name,
+    number: number,
+    email: email,
+    followers: followers,
+    following: following,
+    isAuth: true})
 export const createUser = () => ({type: CREAT_USER})
 export const logout = () => ({type: LOGOUT})

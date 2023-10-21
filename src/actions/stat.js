@@ -57,6 +57,40 @@ export function getFiles() {
     }
 }
 
+export function getUsersPost() {
+    return async dispatch => {
+        try {
+            let token = localStorage.getItem('token');
+            let decodedToken = jwt_decode(token);
+            console.log("Decoded Token", decodedToken);
+            let currentDate = new Date();
+
+            // JWT exp is in seconds
+            if (decodedToken.exp * 1000 < currentDate.getTime()) {
+                console.log("Token expired.");
+                const fingerprint = getBrowserFingerprint();
+                const refresh = await axios.post(domen+'/users/refresh', {
+                    "fingerprint":fingerprint},{ withCredentials: true
+                })
+                localStorage.setItem('token', refresh.data.jwtToken);
+            }
+            const response = await axios.get(domen+'/users/self/audios?date=latest', {
+                headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}
+            })
+
+            //alert(response.oldData)
+            //alert("ok")
+
+            dispatch(setFiles(response.data.infos, response.data.prevDate, response.data.infos[0].date,
+                response.data.nextDate, response.data.maxWords,
+                response.data.numAllSwears,
+                response.data.numAllParasites, response.data.avgSpeechSpeed))
+        } catch (e) {
+            //alert(e.response.data.message)
+        }
+    }
+}
+
 export function getNewFiles(date) {
     return async dispatch => {
         try {
