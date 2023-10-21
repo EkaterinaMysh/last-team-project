@@ -1,0 +1,61 @@
+.main__toolbar__user{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.main__toolbar__menu{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.main__toolbar__menu a, .logout__btn{
+    margin: 0px;
+    border: 0px;
+    font-size: 70%;
+    border-radius: 0px;
+}
+.main__toolbar{
+    width: 100%;
+    height: calc(50px - 2px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px #F9F8FE solid;
+    font-family:  sans-serif;
+    font-size: 1.3rem;
+    color: black;
+}
+.main__logo{
+    min-width: 30px;
+    padding: 0;
+    height: calc(50px - 2px);
+}
+.logout__btn,
+.navbar__feed,
+.navbar__user,
+.navbar__home{
+    background-color: white;
+    border: 0;
+    padding: 0;
+    margin: 5px;
+    color: #747474;
+    font-style: normal;
+}
+.navbar__feed a:hover,
+.navbar__feed a:focus,
+.navbar__home a:hover,
+.navbar__home a:focus,
+.navbar__user a:hover,
+.navbar__user a:focus,
+.logout__btn:hover,
+.logout__btn:focus{
+    background: white;
+    color: black;
+    cursor: pointer;
+}
+
+.main__person{
+    margin: 20px;
+}

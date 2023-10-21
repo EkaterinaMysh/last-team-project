@@ -19,6 +19,7 @@ import Home from "./home/Home"
 import Login from "../registration/Login";
 import Navbar from "./navbar/Navbar";
 import Feed from "./feed/Feed";
+import { useActionData } from "react-router-dom";
 
 const Main = () => {
     const dispatch = useDispatch()
@@ -40,7 +41,7 @@ const Main = () => {
         dispatch(setUser('admin','anna','111','mail','3','4'))
     })
 
-    const nameP = '/'+useSelector(state => state.user.currentUser)
+    const nameP = '/user/'+useSelector(state => state.user.currentUser)
     //const nameP = setUser('admin')
     //const post = useSelector(state => state.home.posts)
     const [post, setPosts]=useState([
@@ -66,6 +67,7 @@ const Main = () => {
                                 <Route path="/home" component={Home}/>
                                 <Route path="/feed" component={Feed}/>
                                 <Route path={nameP} component={MyProfile}/>
+                                <Route path='/user/:userId' component={MyProfile}/>
                                 <Redirect to='/home'/>
                             </Switch>
 

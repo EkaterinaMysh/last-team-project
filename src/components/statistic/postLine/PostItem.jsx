@@ -1,12 +1,15 @@
 import React from 'react';
 import './../postLine/postList.css';
+import {NavLink} from "react-router-dom";
+
 
 const PostItem = (props) => {
+    const id = '/user/'+props.post.mail
     return (
         <div className='post'>
             <div className='post__content'>
                 <div className='post__header'>
-                    <div>{props.post.mail}</div>
+                    <NavLink to={id}>{props.post.mail}</NavLink>
                     <div>{props.number}</div>
                 </div>
                 <strong>{props.post.title}</strong>

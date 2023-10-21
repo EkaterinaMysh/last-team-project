@@ -1,0 +1,274 @@
+@import "../../../assets/font/fonts.css";
+
+.main{
+    min-height: 95%;
+    min-width: 100%;
+    background: linear-gradient(to bottom, #ffffff, #f9f8fe) fixed;
+    font-family: "Roboto",sans-serif;
+}
+
+.main__content{
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+    background-color: beige;
+}
+
+.main__footer{
+    width: calc(100% - 20px);
+    height: calc(50px - 2px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-top: 2px #F9F8FE solid;
+}
+
+.main__footer__content{
+    font-size: 80%;
+    margin-top: 10px;
+}
+
+.main__toolbar__user{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.main__toolbar__menu{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.main__toolbar__menu a, .logout__btn{
+    margin: 0px;
+    border: 0px;
+    font-size: 70%;
+    border-radius: 0px;
+}
+
+.main__stat{
+    min-width: calc(76% - 1px);
+    max-width: calc(76% - 1px);
+    min-height: 100%;
+}
+
+.main__atr{
+    min-width: calc(100% - 76% - 1px - 2.5%);
+    max-width: calc(100% - 76% - 1px - 2.5%);
+    padding: 0 0.5% 0 2%;
+}
+
+.main__line{
+    min-width: 1px;
+    max-width: 1px;
+    min-height: calc(100% - 20px);
+    margin: 10px 0;
+    background-color: #E1E1FF;
+}
+
+.main__toolbar{
+    width: 100%;
+    height: calc(50px - 2px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px #F9F8FE solid;
+    font-family: "AvertaBold1", sans-serif;
+    font-size: 1.3rem;
+    color: black;
+}
+
+.main__person{
+
+    margin: 20px;
+}
+
+.main__load{
+    display: flex;
+    flex-flow: row;
+    background-color: white;
+    margin: 0;
+    margin-left: 20%;
+    width: calc(100% - 2px);
+    padding: 10px;
+    min-height: 5%;
+    justify-content: left;
+    border: 1px white solid;
+}
+
+.main__load:hover,
+.main__load:focus,
+.main__load:active {
+    width: calc(100% - 2px);
+    background-color: white;
+    border: 1px #6A78F9 solid;
+    max-height: 100%;
+}
+
+.main__picupload{
+    margin: 0 20px;
+}
+
+.main__upload {
+    display: flex;
+    flex-flow: column;
+    font-size: 1.2rem;
+    width: 70%;
+    font-style: italic;
+    color: black;
+    font-family: "AvertaBold1", sans-serif;
+}
+
+.main__upload p{
+    font-size: 15px;
+    margin: 0;
+    font-style: normal;
+    color: #B3B3B3;
+    font-family: "Roboto", sans-serif;
+}
+
+.main__screen{
+    display: flex;
+    flex-flow: row;
+    min-height: 100vh;
+    min-width: 100%;
+    font-family: "Averta1";
+}
+
+.dropbtn, .dropbtn__b {
+    position: relative;
+    background: inherit;
+    width: 10px;
+    top: -10px;
+    left: calc(100% - 25px);
+    border: none;
+}
+
+.main__icons{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main__icons__top, .main__icons__bottom{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.main__icons__bottom{
+    align-items: flex-start;
+}
+
+.main__img{
+    width: 25px;
+    padding: 7px 0;
+}
+
+.main__img__bottom {
+    width: 25px;
+    padding: 7px 0;
+    padding-right: 7px;
+    padding-left: 7px;
+}
+.main__logo__bottom{
+    min-width: 35px;
+}
+.main__logo{
+    min-width: 30px;
+    padding: 0;
+    height: calc(50px - 2px);
+}
+
+.dropdown {
+    min-width: calc(60px - 20px);
+    position: relative;
+    display: flex;
+}
+
+.dropdown-content {
+    display: none;
+    min-height: calc(100% - 14px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: white;
+    min-width: calc(150px - 20px);
+    padding: 10px;
+    padding-bottom: 4px;
+    z-index: 1;
+}
+.dropdown__inside{
+    min-height: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+}
+
+.dropdown-content a {
+    color: black;
+    text-decoration: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown-content .main__img{
+    width: 25%;
+}
+
+.dropdown-content a:hover {background-color: white; border: none}
+
+.dropdown:hover .dropdown-content {display: flex;}
+
+.dropdown:hover .dropbtn__b {
+    left: 120px;
+    margin-bottom: 8px;
+}
+
+.logout__btn{
+    background-color: white;
+    border: 0;
+    padding: 0;
+    margin: 5px;
+    color: #747474;
+}
+
+.logout__btn:hover{
+    cursor: pointer;
+}
+
+.main__img__logout{
+}
+
+.dropdown:hover {background-color: white;}
+
+
+.disk__upload-input {
+    display: none;
+}
+.disk__upload-label {
+    cursor: pointer;
+}
+
+.disk__upload{
+    display: flex;
+    flex-flow: row;
+}
+
+.disk__upload__btn{
+    min-width: 20%;
+}
+
+.disk__upload__stat{
+    align-self: center;
+    display: flex;
+    min-width: calc(100% - 20%);
+    justify-content: center;
+}
+
