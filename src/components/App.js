@@ -15,9 +15,9 @@ function Auth(){
 }
 
 function App() {
-    //const isAuth = useSelector(state => state.user.isAuth)
+    const isAuth = useSelector(state => state.user.isAuth)
     const dispatch = useDispatch()
-    const isAuth = 1
+    //const isAuth = 1
     return (
 
         <BrowserRouter>

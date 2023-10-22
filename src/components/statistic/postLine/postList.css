@@ -19,6 +19,7 @@
 
 .list__post{
     width: calc(70% + 13px);
+    /*min-width: calc(70% + 13px);*/
     background-color: white;
     border: 13px green;
     padding: 2% 5%;

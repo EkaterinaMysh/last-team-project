@@ -34,17 +34,9 @@ export default function fileReducer(state = defaultState, action) {
     }
 }
 
-export const setFiles = (files, odat, dat, ndat, inf, swe, par, spe, tex) => ({
+export const setPost = (files) => ({
     type: SET_FILES,
-    oldDate: odat,
-    date: dat,
-    newDate: ndat,
-    payload: files,
-    info:inf,
-    swear:swe,
-    parasit:par,
-    speed: spe,
-    text: tex
+    payload: files
 })
 export const updFiles = (dat, swe, par, spe, tex, pw, vol) => ({
     type: UPD_FILES,

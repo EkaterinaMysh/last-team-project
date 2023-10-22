@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {connect, useDispatch, useSelector} from "react-redux";
-import './MyProfile.css'
+import './UserProfile.css'
 import PostList from "../postLine/PostList";
 import {setUser} from "../../../reducers/userReducer";
 import {getInfo} from "../../../actions/user";
 import {getUsersPost} from "../../../actions/stat";
-import {NavLink, withRouter} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 
-const MyProfile = () => {
+const UserProfile = () => {
     const dispatch = useDispatch()
     //const [email, setEmail] = useState("")
     //const [fio, setFio] = useState("")
@@ -66,19 +66,15 @@ const MyProfile = () => {
 
                         <div className="user_inf">
                             <p>Информация о пользователе:</p>
-                            <p>Уровень: </p>
                             <p>Почта: {email}</p>
                             <p>Телефон: {number}</p>
-                            <p>Подписчики: {followers}</p>
-                            <p>Подписки: {following}</p>
-                            <button id="submit-btn" type='submit' className='submit__btn'>Написать поручение</button>
-                            <div className=''>
-                                <NavLink to="/write_request"><p>Написать поручение</p></NavLink>
-
-                            </div>
                         </div>
                     </div>
-
+                    <div className="">
+                        <p>Подписчики: {followers}</p>
+                        <p>Подписки: {following}</p>
+                        <button id="follow-btn" type='submit' class='follow__btn'>Подписаться</button>
+                    </div>
                 </div>
             </div>
 
@@ -95,4 +91,4 @@ const MyProfile = () => {
 };
 
 
-export default MyProfile;
+export default UserProfile;

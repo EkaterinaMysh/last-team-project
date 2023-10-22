@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {setUser,createUser} from "../reducers/userReducer";
+import {setUser,createUser,setAuth,setCreate} from "../reducers/userReducer";
 import getBrowserFingerprint from "get-browser-fingerprint";
 import jwt_decode from "jwt-decode";
 import {setFiles} from "../reducers/fileReducer";
@@ -25,7 +25,7 @@ export const registration = (fio,login, password,number,email) => {
             "password":password,"email":email,"login":login, 'name':fio,'phone_number':number
         })
         if(response.status===201) {
-            dispatch(createUser());
+            dispatch(createUser(fio,login, number,email));
             const token = await axios.post(domen+'/users/2fa', {
                 "login":login,"password":password
             })
@@ -42,15 +42,16 @@ export const registration = (fio,login, password,number,email) => {
 export const login =  (log, password) => {
     return async dispatch => {
         try {
-            const response = await axios.post(domen+'/users/2fa', {
-                "login":log,"password":password
+            const response = await axios.post(domen+'/login', {
+                "email":log,"password":password
             })
             if(response.status===201) {
-                dispatch(createUser())
+                dispatch(setCreate())
                 localStorage.setItem('token', response.data.token)
             }
         } catch (e) {
             alert(e.response.data.message)
+
         }
     }
 }
@@ -59,19 +60,21 @@ export const fa =  (login,password,token) => {
     return async dispatch => {
         try {
             const fingerprint = getBrowserFingerprint();
+            //удалить потом ниже строку
+            dispatch(setAuth(login))
             const response = await axios.post(domen+'/users/login', {
                 "login":login,"password":password,"two_fa_token":token, "fingerprint":fingerprint},
                 {withCredentials: true}
             )
-            dispatch(setUser(login))
+            dispatch(setAuth(login))
             //alert("username")
             //alert(login)
             localStorage.setItem('token', response.data.jwtToken)
             localStorage.setItem('user', login)
             //alert('ok')
-            const self = await axios.get(domen+'/users/self',
-                {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`},responseType: 'text'}
-            )
+            //const self = await axios.get(domen+'/users/self',
+            //    {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`},responseType: 'text'}
+            //)
         } catch (e) {
             alert(e.response.data.message)
             localStorage.removeItem('token')

@@ -27,6 +27,21 @@
     font-size: 1.3rem;
     color: black;
 }
+.main__toolbar__money {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-width: 20%;
+}
+
+.main__toolbar__money p{
+    margin: 0px;
+    border: 0px;
+    font-size: 70%;
+    border-radius: 0px;
+    min-width: 40%;
+}
+
 .main__logo{
     min-width: 30px;
     padding: 0;

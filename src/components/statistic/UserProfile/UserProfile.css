@@ -20,7 +20,7 @@ a {
     text-align: center;
 }
 
-.container__profile{
+.container__pfofile{
     width: 100%;
 }
 .message-img {
@@ -111,31 +111,16 @@ h1 {
     width: 30%;
     height: 40px;
     padding: 0;
-    background: #64E2CD;
-    border: 0;
-    border-radius: 50px;
-    color: white;
-    margin: 3% 0;
-}
-
-.submit__btn{
-    min-width: 100px ;
-    max-width: 140px ;
-    width: 50%;
-    height: 40px;
-    padding: 0;
     background: rgb(255, 129, 129);
     border: 0;
     border-radius: 50px;
     color: white;
     margin: 3% 0;
 }
-
 .col-sm{
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly
 }
 .user_inf{
-    margin: 1% 1%;
+    margin: 8% 5%;
 }

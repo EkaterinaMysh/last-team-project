@@ -3,6 +3,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
 import {getFiles, checkFile} from "../../actions/stat";
 import MyProfile from "./myProfile/MyProfile";
+import UserProfile from "./UserProfile/UserProfile";
+import Write_request from "./Write_request/Write_request";
 import Load from "./load/Load";
 
 import {uploadFile} from "../../actions/stat";
@@ -38,7 +40,7 @@ const Main = () => {
     //}
 
     useEffect(()=>{
-        dispatch(setUser('admin','anna','111','mail','3','4'))
+        //dispatch(setUser('admin','anna','111','mail','3','4'))
     })
 
     const nameP = '/user/'+useSelector(state => state.user.currentUser)
@@ -65,9 +67,10 @@ const Main = () => {
                         <div className="wrap">
                             <Switch>
                                 <Route path="/home" component={Home}/>
+                                <Route path="/write_request" component={Write_request}/>
                                 <Route path="/feed" component={Feed}/>
                                 <Route path={nameP} component={MyProfile}/>
-                                <Route path='/user/:userId' component={MyProfile}/>
+                                <Route path='/user/:userId' component={UserProfile}/>
                                 <Redirect to='/home'/>
                             </Switch>
 

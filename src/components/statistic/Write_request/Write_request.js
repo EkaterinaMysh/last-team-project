@@ -7,24 +7,23 @@ import Load from "./../load/Load";
 
 import {uploadFile} from "../../../actions/stat";
 import {logout} from "../../../reducers/userReducer"
-import './Main.css';
+import './Write_request.css';
 import Person from '../../../assets/img/person.png';
 import Logo from "../../../assets/img/logo_main.png";
 import PostList from "./../postLine/PostList";
 import Navbar from "../navbar/Navbar"
 import {NavLink} from "react-router-dom";
 import {login} from "../../../actions/user";
-import {getPost} from "../../../actions/stat";
 
-const Home = () => {
+const Write_request = () => {
     const dispatch = useDispatch()
 
     //const mess = useSelector(state => state.load.type)
 
-    useEffect(() => {
+    //useEffect(() => {
     //dispatch(setUser(localStorage.getItem('user')))
-        dispatch(getPost())
-    })
+    //    dispatch(getFiles())
+    //})
 
     //function fileUploadHandler(event) {
     //    const files = [...event.target.files]
@@ -44,22 +43,31 @@ const Home = () => {
     ]);
     return (
 
-            <div className="main__screen">
+        <div className="main__screen_wr">
 
-                <div className="main">
-                    <div className="main__content">
-                        <PostList post={post} title="Recent home posts"/>
+            <div className="main">
+
+                <form className="form_for_request">
+                    <p className="title_request">Ваше поручение</p>
+                    <div className="text_request">
+                        <textarea id="text" placeholder="Описание поручения" className="for_textarea" ></textarea>
                     </div>
-                    <footer className="main__footer">
-                        <div className="main__footer__content">
-                            Рябеево, Тверская обл., 170524
-                        </div>
-                    </footer>
-                </div>
+                    <div className="coins">
+                        <h4>Сколько А-монет будет списано за поручение?</h4>
+                        <input type="number" id="coins" className="wr_coins"></input>
+                    </div>
+                </form>
+
+                <footer className="main__footer">
+                    <div className="main__footer__content">
+                        Рябеево, Тверская обл., 170524
+                    </div>
+                </footer>
             </div>
+        </div>
 
     );
 
 }
 
-export default Home;
+export default Write_request;

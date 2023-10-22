@@ -26,7 +26,9 @@ const Navbar = () => {
                 </button>
 
             </div>
-            <div className='main__toolbar__user'>
+            <div className='main__toolbar__money'>
+                <p>A-coins: </p>
+                <p>B-coins: </p>
 
             </div>
 
