@@ -82,7 +82,7 @@ export function getUsersPost() {
             //alert(response.oldData)
             //alert("ok")
 
-            dispatch(setPost(response.data.infos))
+            dispatch(setPost(response.data))
         } catch (e) {
             //alert(e.response.data.message)
         }
@@ -112,8 +112,10 @@ export function getPost() {
 
             //alert(response.oldData)
             //alert("ok")
-
-            dispatch(setPost(response.data.infos))
+            console.log("Decoded Token", response.data);
+            //alert(response[0].title)
+            //alert(response)
+            dispatch(setPost(response.data))
         } catch (e) {
             //alert(e.response.data.message)
         }

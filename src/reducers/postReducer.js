@@ -1,5 +1,6 @@
-const SET_FILES = "SET_FILES"
-const UPD_FILES = "UPD_FILES"
+const SET_POST = "SET_POST"
+const SET_FEED = "SET_FEED"
+const UPD_POST = "UPD_POST"
 
 const defaultState = {
     type:false,
@@ -9,18 +10,19 @@ const defaultState = {
     last_feed:[]
 }
 
-export default function fileReducer(state = defaultState, action) {
+export default function postReducer(state = defaultState, action) {
     switch (action.type) {
-        case SET_FILES:
-            return {
-                ...state,
-                type: false,
-                home: action.home,
-                last_home: action.last_home,
-                feed: action.feed,
-                last_feed: action.last_feed
+        case SET_POST:
+            return {...state,
+                type: true,
+                home: action.payload
             }
-        case UPD_FILES:
+        case SET_FEED:
+            return {...state,
+                type: true,
+                feed: action.payload
+            }
+        case UPD_POST:
             return {
                 ...state,
                 type: true,
@@ -35,16 +37,14 @@ export default function fileReducer(state = defaultState, action) {
 }
 
 export const setPost = (files) => ({
-    type: SET_FILES,
+    type: SET_POST,
     payload: files
 })
-export const updFiles = (dat, swe, par, spe, tex, pw, vol) => ({
-    type: UPD_FILES,
-    date: dat,
-    swear:swe,
-    parasit:par,
-    speed: spe,
-    text: tex,
-    profw:pw,
-    vol:vol
+
+export const setPostFeed = (files) => ({
+    type: SET_FEED,
+    payload: files
+})
+export const updPost = () => ({
+    type: UPD_POST
 })

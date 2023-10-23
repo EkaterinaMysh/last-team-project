@@ -4,11 +4,13 @@ import thunk from "redux-thunk";
 import userReducer from "./userReducer";
 import fileReducer from "./fileReducer";
 import loadReducer from "./loadReducer";
+import postReducer from "./postReducer";
 
 
 const rootReducer = combineReducers({
     user: userReducer,
     files: fileReducer,
-    load: loadReducer
+    load: loadReducer,
+    post: postReducer
 })
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))

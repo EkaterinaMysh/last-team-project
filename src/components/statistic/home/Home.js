@@ -20,11 +20,11 @@ const Home = () => {
     const dispatch = useDispatch()
 
     //const mess = useSelector(state => state.load.type)
-
+    //let post
     useEffect(() => {
     //dispatch(setUser(localStorage.getItem('user')))
         dispatch(getPost())
-    })
+    },[])
 
     //function fileUploadHandler(event) {
     //    const files = [...event.target.files]
@@ -33,15 +33,18 @@ const Home = () => {
     //}
 
     //const nameP = useSelector(state => state.user.currentUser)
-    const nameP = 'admin'
-    //const post = useSelector(state => state.home.posts)
-    const [post, setPosts]=useState([
-        {id: 1, typ:1, mail: '@@@@@', title: 'Java Script', body: 'a programming language', photo: ''},
-        {id: 2, typ:0, mail: '@@@@@', title: 'Python', body: 'a programming language', photo: ''},
-        {id: 3, typ:1, mail: '@@@@@', title: 'C++', body: 'a programming language', photo: ''},
-        {id: 4, typ:0, mail: '@@@@@', title: 'C', body: 'a programming language', photo: ''},
-        {id: 5, typ:1, mail: '@@@@@', title: 'C#', body: 'a programming language', photo: ''}
-    ]);
+    //const nameP = 'admin'
+    //const post = useSelector(state => state.post.home)
+    //const [post, setPosts]=useState([
+    //    {id: 1, typ:1, mail: '@@@@@', title: 'Java Script', body: 'a programming language', photo: ''},
+    //    {id: 2, typ:0, mail: '@@@@@', title: 'Python', body: 'a programming language', photo: ''},
+    //    {id: 3, typ:1, mail: '@@@@@', title: 'C++', body: 'a programming language', photo: ''},
+    //    {id: 4, typ:0, mail: '@@@@@', title: 'C', body: 'a programming language', photo: ''},
+    //    {id: 5, typ:1, mail: '@@@@@', title: 'C#', body: 'a programming language', photo: ''}
+    //]);
+
+    const post = useSelector(state => state.post.home)
+
     return (
 
             <div className="main__screen">
