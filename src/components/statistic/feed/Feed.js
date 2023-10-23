@@ -5,12 +5,13 @@ import {useDispatch, useSelector} from "react-redux";
 import MyProfile from "./../myProfile/MyProfile";
 import Load from "./../load/Load";
 
-import {uploadFile} from "../../../actions/stat";
+import {getPost, uploadFile} from "../../../actions/stat";
 import PostList from "./../postLine/PostList";
 import {login} from "../../../actions/user";
 
 const Feed = () => {
     const dispatch = useDispatch()
+
 
     //const mess = useSelector(state => state.load.type)
 

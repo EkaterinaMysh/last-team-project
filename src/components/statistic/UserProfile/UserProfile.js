@@ -24,9 +24,9 @@ const UserProfile = () => {
         let login= window.location.pathname
         login = login.slice(6)
         //alert(leeeeee)
-        dispatch(getInfo(login))
-        dispatch(getUsersPost(login))
-    })
+        //dispatch(getInfo(login))
+        //dispatch(getUsersPost(login))
+    },[])
 
     const divStyle = {
         color: 'red',

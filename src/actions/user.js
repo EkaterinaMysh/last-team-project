@@ -60,13 +60,15 @@ export const fa =  (log,password,token) => {
     return async dispatch => {
         try {
             const fingerprint = getBrowserFingerprint();
-
-            const response = await axios.post(domen+'/login/2fa',
+            dispatch(setAuth(login))
+            /*const response = await axios.post(domen+'/login/2fa',
                 {"email":log, "code": token
             }
             )
+
             //alert(response)
-            dispatch(setAuth(login))
+
+            dispatch(setAuth(login))*/
             //alert('ok')
 
         } catch (e) {
