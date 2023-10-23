@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {connect, useDispatch, useSelector} from "react-redux";
-import './MyProfile.css'
+import './UserProfile.css'
 import PostList from "../postLine/PostList";
 import {setUser} from "../../../reducers/userReducer";
 import {getInfo} from "../../../actions/user";
 import {getUsersPost} from "../../../actions/stat";
 import {NavLink, withRouter} from "react-router-dom";
 
-const MyProfile = () => {
+const UserPosts = () => {
     const dispatch = useDispatch()
     //const [email, setEmail] = useState("")
     //const [fio, setFio] = useState("")
@@ -24,7 +24,6 @@ const MyProfile = () => {
         let login= window.location.pathname
         login = login.slice(6)
         //alert(leeeeee)
-        //login="Ketrina"
         dispatch(getInfo(login))
         dispatch(getUsersPost(login))
     })
@@ -67,34 +66,36 @@ const MyProfile = () => {
 
                         <div className="user_inf">
                             <p>Информация о пользователе:</p>
-                            <p>Уровень: </p>
                             <p>Почта: {email}</p>
                             <p>Телефон: {number}</p>
                             <p>Подписчики: {followers}</p>
                             <p>Подписки: {following}</p>
-                            <button id="submit-btn" type='submit' className='submit__btn'>Написать поручение</button>
-                            <div className=''>
-                                <NavLink to="/write_request"><p>Написать поручение</p></NavLink>
-
-                            </div>
+                            <button id="follow-btn" type='submit' className='follow__btn'>Подписаться</button>
 
                         </div>
                     </div>
+                    <div className="">
+                        <div className=''>
+                            <NavLink to="/user/:userId"><p>Посты пользователя</p></NavLink>
 
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div className='row text-center'>
                 <div className='col'>
-                    <PostList post={post} title="Посты пользователя"/>
+                    <PostList post={post} title="Взятые запросы"/>
                 </div>
+
             </div>
 
 
 
         </div>
     );
+
 };
 
 
-export default MyProfile;
+export default UserPosts;

@@ -31,7 +31,7 @@ const Login = () => {
                     <h2>Welcome to <nobr>RAYBEEVO!</nobr></h2>
                     <div className="fa__header">Вам на почту отправлен код подтверждения</div>
                     <p>Код</p>
-                    <Input value={token} setValue={setToken} type="text" placeholder="Введите код..."/>
+                    <Input value={token} setValue={setToken} type="number" placeholder="Введите код..."/>
                     <div className={"authorization__div__btn"}>
                         <button className="fa__btn" onClick={() =>dispatch(fa(log,password,token))}>Подтвердить</button>
                     </div>

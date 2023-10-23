@@ -56,27 +56,17 @@ export const login =  (log, password) => {
     }
 }
 
-export const fa =  (email) => {
+export const fa =  (log,password,token) => {
     return async dispatch => {
         try {
             const fingerprint = getBrowserFingerprint();
-            //удалить потом ниже строку
-            dispatch(setAuth(login))
-            const response = await axios.get(domen+'/login/2fa',
-                {headers:{email:email}
+
+            const response = await axios.post(domen+'/login/2fa',
+                {"email":log, "code": token
             }
             )
-            alert(email)
-            alert(response)
-            //dispatch(setAuth(login))
-            //alert("username")
-            //alert(login)
-            //{headers:{Authorization:`Bearer ${localStorage.getItem('token')}`, ,responseType: 'text'}
-            //const response = await axios.post(domen+'/login/2fa',
-              //  {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`},responseType: 'text'}
-            //)
-            //localStorage.setItem('token', response.data.jwtToken)
-            //localStorage.setItem('user', login)
+            //alert(response)
+            dispatch(setAuth(login))
             //alert('ok')
 
         } catch (e) {

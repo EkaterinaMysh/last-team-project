@@ -25,9 +25,7 @@ function App() {
             {(!isAuth ) ?
                 <div className={"container"}>
 
-                    <div className={"logo"}>
 
-                    </div>
                     <div className='app'>
                         <NavbarReg/>
                         <div className="wrap">

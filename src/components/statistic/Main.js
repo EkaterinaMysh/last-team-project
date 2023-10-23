@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {BrowserRouter, Route, Switch, Redirect} from "react-router-dom";
 import {getFiles, checkFile} from "../../actions/stat";
 import MyProfile from "./myProfile/MyProfile";
+import UserPosts from "./UserProfile/UserProfilePosts";
 import UserProfile from "./UserProfile/UserProfile";
 import Write_request from "./Write_request/Write_request";
 import Load from "./load/Load";
@@ -68,6 +69,7 @@ const Main = () => {
                             <Switch>
                                 <Route path="/home" component={Home}/>
                                 <Route path="/write_request" component={Write_request}/>
+                                <Route path="/userposts" component={UserPosts}/>
                                 <Route path="/feed" component={Feed}/>
                                 <Route path={nameP} component={MyProfile}/>
                                 <Route path='/user/:userId' component={UserProfile}/>

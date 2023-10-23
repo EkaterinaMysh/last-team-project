@@ -5,7 +5,7 @@ import PostList from "../postLine/PostList";
 import {setUser} from "../../../reducers/userReducer";
 import {getInfo} from "../../../actions/user";
 import {getUsersPost} from "../../../actions/stat";
-import {withRouter} from "react-router-dom";
+import {NavLink, withRouter} from "react-router-dom";
 
 const UserProfile = () => {
     const dispatch = useDispatch()
@@ -68,12 +68,17 @@ const UserProfile = () => {
                             <p>Информация о пользователе:</p>
                             <p>Почта: {email}</p>
                             <p>Телефон: {number}</p>
+                            <p>Подписчики: {followers}</p>
+                            <p>Подписки: {following}</p>
+                            <button id="follow-btn" type='submit' className='follow__btn'>Подписаться</button>
+
                         </div>
                     </div>
                     <div className="">
-                        <p>Подписчики: {followers}</p>
-                        <p>Подписки: {following}</p>
-                        <button id="follow-btn" type='submit' class='follow__btn'>Подписаться</button>
+                        <div className=''>
+                            <NavLink to="/userposts"><p>Взятые запросы</p></NavLink>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -82,12 +87,14 @@ const UserProfile = () => {
                 <div className='col'>
                     <PostList post={post} title="Посты пользователя"/>
                 </div>
+
             </div>
 
 
 
         </div>
     );
+
 };
 
 
