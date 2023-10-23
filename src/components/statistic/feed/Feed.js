@@ -29,11 +29,11 @@ const Feed = () => {
     const nameP = 'admin'
     //const post = useSelector(state => state.home.posts)
     const [post, setPosts]=useState([
-        {id: 1, mail: '@@@@@', title: 'Java Script', body: 'a programming language', photo: ''},
-        {id: 2, mail: '@@@@@', title: 'Python', body: 'a programming language', photo: ''},
-        {id: 3, mail: '@@@@@', title: 'C++', body: 'a programming language', photo: ''},
-        {id: 4, mail: '@@@@@', title: 'C', body: 'a programming language', photo: ''},
-        {id: 5, mail: '@@@@@', title: 'C#', body: 'a programming language', photo: ''}
+        {id: 1, typ:1, mail: '@@@@@', title: 'Java Script', body: 'a programming language', photo: ''},
+        {id: 2, typ:0, mail: '@@@@@', title: 'Python', body: 'a programming language', photo: ''},
+        {id: 3, typ:1, mail: '@@@@@', title: 'C++', body: 'a programming language', photo: ''},
+        {id: 4, typ:0, mail: '@@@@@', title: 'C', body: 'a programming language', photo: ''},
+        {id: 5, typ:1, mail: '@@@@@', title: 'C#', body: 'a programming language', photo: ''}
     ]);
     return (
 

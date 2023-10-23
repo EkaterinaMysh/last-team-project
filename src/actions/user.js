@@ -56,26 +56,31 @@ export const login =  (log, password) => {
     }
 }
 
-export const fa =  (login,password,token) => {
+export const fa =  (email) => {
     return async dispatch => {
         try {
             const fingerprint = getBrowserFingerprint();
             //удалить потом ниже строку
             dispatch(setAuth(login))
-            const response = await axios.post(domen+'/users/login', {
-                "login":login,"password":password,"two_fa_token":token, "fingerprint":fingerprint},
-                {withCredentials: true}
+            const response = await axios.get(domen+'/login/2fa',
+                {headers:{email:email}
+            }
             )
-            dispatch(setAuth(login))
+            alert(email)
+            alert(response)
+            //dispatch(setAuth(login))
             //alert("username")
             //alert(login)
-            localStorage.setItem('token', response.data.jwtToken)
-            localStorage.setItem('user', login)
-            //alert('ok')
-            //const self = await axios.get(domen+'/users/self',
-            //    {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`},responseType: 'text'}
+            //{headers:{Authorization:`Bearer ${localStorage.getItem('token')}`, ,responseType: 'text'}
+            //const response = await axios.post(domen+'/login/2fa',
+              //  {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`},responseType: 'text'}
             //)
+            //localStorage.setItem('token', response.data.jwtToken)
+            //localStorage.setItem('user', login)
+            //alert('ok')
+
         } catch (e) {
+
             alert(e.response.data.message)
             localStorage.removeItem('token')
         }
