@@ -3,6 +3,8 @@ const SET_AUTH = "SET_AUTH"
 const SET_CREATE = "SET_CREATE"
 const CREAT_USER = "CREAT_USER"
 const LOGOUT = "LOGOUT"
+const SET_BALANCE = "SET_BALANCE"
+
 
 const defaultState = {
     currentUser: (localStorage.getItem('token')!=null)
@@ -13,8 +15,11 @@ const defaultState = {
     name: [],
     number: [],
     email: [],
+    level: [],
     followers: [],
     following: [],
+    balanceA: [],
+    balanceB: [],
     //isAuth: (localStorage.getItem('token')!=null),
     isAuth: false,
     isCreate: false
@@ -29,6 +34,7 @@ export default function userReducer(state = defaultState, action) {
                 name: action.name,
                 number: action.number,
                 email: action.email,
+                level: action.level,
                 followers: action.followers,
                 following: action.following,
                 isAuth: true
@@ -47,11 +53,19 @@ export default function userReducer(state = defaultState, action) {
             }
         case CREAT_USER:
             return {
-                ...state,currentUser: action.user,
+                ...state,
+                currentUser: action.user,
                 name: action.name,
                 number: action.number,
                 email: action.email,
                 isCreate: true
+            }
+        case SET_BALANCE:
+            return {
+                ...state,
+                currentUser: action.user,
+                balanceA: action.balanceA,
+                balanceB: action.balanceB
             }
         case LOGOUT:
             localStorage.removeItem('token')
@@ -66,7 +80,7 @@ export default function userReducer(state = defaultState, action) {
     }
 }
 
-export const setUser = (login, name, number, email, followers, following) => ({
+export const setUser = (login, name, number, email, level, followers, following) => ({
     type: SET_USER,
     user: login,
     name: name,
@@ -74,12 +88,20 @@ export const setUser = (login, name, number, email, followers, following) => ({
     email: email,
     followers: followers,
     following: following,
+    level: level,
     isAuth: true})
 
 export const setAuth = (login) => ({
     type: SET_AUTH,
     user: login,
     isAuth: true})
+
+export const setBalance = (A, B) => ({
+    type: SET_BALANCE,
+    balanceA: A,
+    balanceB: B
+})
+
 
 export const setCreate = (login) => ({
     type: SET_CREATE,
@@ -93,4 +115,5 @@ export const createUser = (login, name, number, email) => ({
     email: email,
     isCreate: true
 })
+
 export const logout = () => ({type: LOGOUT})

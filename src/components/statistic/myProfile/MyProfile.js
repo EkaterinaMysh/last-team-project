@@ -20,14 +20,15 @@ const MyProfile = () => {
 
     //const login = useSelector(state => state.user.currentUser)
 
+
     useEffect(()=>{
         let login= window.location.pathname
         login = login.slice(6)
-        //alert(leeeeee)
-        //login="Ketrina"
+        //alert(login)
         dispatch(getInfo(login))
         dispatch(getUsersPost(login))
-    })
+
+    },[])
 
     const divStyle = {
         color: 'red',
@@ -37,19 +38,22 @@ const MyProfile = () => {
         marginLeft: 'auto',
         marginRight: 'auto'
     };
-    const [post, setPosts]=useState([
+    /*const [post, setPosts]=useState([
         {id: 1, mail: '@@@@@', title: 'Java Script', body: 'a programming language', photo: ''},
         {id: 2, mail: '@@@@@', title: 'Python', body: 'a programming language', photo: ''},
         {id: 3, mail: '@@@@@', title: 'C++', body: 'a programming language', photo: ''},
         {id: 4, mail: '@@@@@', title: 'C', body: 'a programming language', photo: ''},
         {id: 5, mail: '@@@@@', title: 'C#', body: 'a programming language', photo: ''}
-    ]);
+    ]);*/
+    const post = useSelector(state => state.post.home)
+
     const name = useSelector(state => state.user.name)
     //const login = useSelector(state => state.user.currentUser)
     const number = useSelector(state => state.user.number)
     const email = useSelector(state => state.user.email)
     const followers = useSelector(state => state.user.followers)
     const following = useSelector(state => state.user.following)
+    const level = useSelector(state => state.user.level)
 
     return (
         <div className={"container__profile"}>
@@ -67,7 +71,7 @@ const MyProfile = () => {
 
                         <div className="user_inf">
                             <p>Информация о пользователе:</p>
-                            <p>Уровень: </p>
+                            <p>Уровень: {level}</p>
                             <p>Почта: {email}</p>
                             <p>Телефон: {number}</p>
                             <p>Подписчики: {followers}</p>

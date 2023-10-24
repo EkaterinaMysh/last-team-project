@@ -22,6 +22,7 @@ export default function postReducer(state = defaultState, action) {
                 type: true,
                 feed: action.payload
             }
+
         case UPD_POST:
             return {
                 ...state,
@@ -40,6 +41,7 @@ export const setPost = (files) => ({
     type: SET_POST,
     payload: files
 })
+
 
 export const setPostFeed = (files) => ({
     type: SET_FEED,

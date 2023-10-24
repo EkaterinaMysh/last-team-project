@@ -49,6 +49,7 @@ const UserPosts = () => {
     const email = useSelector(state => state.user.email)
     const followers = useSelector(state => state.user.followers)
     const following = useSelector(state => state.user.following)
+    const level = useSelector(state => state.user.level)
 
     return (
         <div className={"container__profile"}>
@@ -66,6 +67,7 @@ const UserPosts = () => {
 
                         <div className="user_inf">
                             <p>Информация о пользователе:</p>
+                            <p>Уровень: {level}</p>
                             <p>Почта: {email}</p>
                             <p>Телефон: {number}</p>
                             <p>Подписчики: {followers}</p>

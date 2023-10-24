@@ -71,8 +71,8 @@ const Main = () => {
                                 <Route path="/write_request" component={Write_request}/>
                                 <Route path="/userposts" component={UserPosts}/>
                                 <Route path="/feed" component={Feed}/>
-                                <Route path={nameP} component={MyProfile}/>
-                                <Route path='/user/:userId' component={UserProfile}/>
+                                <Route path='/user/:userId' component={MyProfile}/>
+                                <Route path='/users/:userId' component={UserProfile}/>
                                 <Redirect to='/home'/>
                             </Switch>
 

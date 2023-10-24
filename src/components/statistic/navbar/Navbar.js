@@ -1,13 +1,21 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './Navbar.css'
 import {NavLink} from "react-router-dom";
 import Logo from "../../../assets/img/logo_main.png";
-import {logout} from "../../../reducers/userReducer";
+import {logout, setBalance} from "../../../reducers/userReducer";
 import Person from "../../../assets/img/person.png";
 import {useDispatch,useSelector} from "react-redux";
+import {getBalance} from "../../../actions/stat";
+
 const Navbar = () => {
     const dispatch = useDispatch()
     const nameP = '/user/'+useSelector(state => state.user.currentUser)
+    useEffect(() => {
+        //dispatch(setUser(localStorage.getItem('user')))
+        dispatch(getBalance("ketrin"))
+    },[])
+    const coinsA = useSelector(state => state.user.balanceA)
+    const coinsB = useSelector(state => state.user.balanceB)
     return (
         <div className="main__toolbar">
             <img src={Logo} alt="" className="main__logo" />
@@ -27,8 +35,8 @@ const Navbar = () => {
 
             </div>
             <div className='main__toolbar__money'>
-                <p>A-coins: </p>
-                <p>B-coins: </p>
+                <p>A-coins:{coinsA} </p>
+                <p>B-coins:{coinsB} </p>
 
             </div>
 

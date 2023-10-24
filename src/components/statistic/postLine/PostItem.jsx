@@ -4,14 +4,14 @@ import {NavLink} from "react-router-dom";
 
 
 const PostItem = (props) => {
-    const id = '/user/'+props.post.owner_name
+    const id = '/users/'+props.post.owner_login
     return (
         <div>
         {(props.post.typ)?
         <div className='post'>
             <div className='post__content'>
                 <div className='post__header'>
-                    <NavLink to={id}>{props.post.owner_name}</NavLink>
+                    <NavLink to={id}>{props.post.owner_login}</NavLink>
                     <div>{props.number}</div>
                 </div>
                 <strong>{props.post.title}</strong>
@@ -27,7 +27,7 @@ const PostItem = (props) => {
             <div className='post'>
                 <div className='post__content'>
                     <div className='post__header'>
-                        <NavLink to={id}>{props.post.owner_name}</NavLink>
+                        <NavLink to={id}>{props.post.owner_login}</NavLink>
                         <div>{props.number}</div>
                     </div>
                     <strong>{props.post.title}</strong>
