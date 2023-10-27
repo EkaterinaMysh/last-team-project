@@ -47,13 +47,13 @@ const Main = () => {
     const nameP = '/user/'+useSelector(state => state.user.currentUser)
     //const nameP = setUser('admin')
     //const post = useSelector(state => state.home.posts)
-    const [post, setPosts]=useState([
+    /*const [post, setPosts]=useState([
         {id: 1, mail: '@@@@@', title: 'Java Script', body: 'a programming language', photo: ''},
         {id: 2, mail: '@@@@@', title: 'Python', body: 'a programming language', photo: ''},
         {id: 3, mail: '@@@@@', title: 'C++', body: 'a programming language', photo: ''},
         {id: 4, mail: '@@@@@', title: 'C', body: 'a programming language', photo: ''},
         {id: 5, mail: '@@@@@', title: 'C#', body: 'a programming language', photo: ''}
-    ]);
+    ]);*/
     return (
 
         <BrowserRouter>
@@ -69,7 +69,6 @@ const Main = () => {
                             <Switch>
                                 <Route path="/home" component={Home}/>
                                 <Route path="/write_request" component={Write_request}/>
-                                <Route path="/userposts" component={UserPosts}/>
                                 <Route path="/feed" component={Feed}/>
                                 <Route path='/user/:userId' component={MyProfile}/>
                                 <Route path='/users/:userId' component={UserProfile}/>

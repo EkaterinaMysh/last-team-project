@@ -58,6 +58,37 @@ export function getUsersPost(login) {
     }
 }
 
+export function getExecUsersPost(login) {
+    return async dispatch => {
+        try {
+            let token = localStorage.getItem('token');
+            let decodedToken = jwt_decode(token);
+            console.log("Decoded Token", decodedToken);
+            let currentDate = new Date();
+
+            // JWT exp is in seconds
+            if (decodedToken.exp * 1000 < currentDate.getTime()) {
+                console.log("Token expired.");
+                const fingerprint = getBrowserFingerprint();
+                const refresh = await axios.post(domen+'/users/refresh', {
+                    "fingerprint":fingerprint},{ withCredentials: true
+                })
+                localStorage.setItem('token', refresh.data.jwtToken);
+            }
+            const response = await axios.get(domen+'/show_executor_offers/'+login, {
+                headers: {'x-access-token': `${localStorage.getItem('token')}`}
+            })
+
+            //alert(response.oldData)
+            //alert("ok")
+
+            dispatch(setPost(response.data))
+        } catch (e) {
+            alert(e.response.data.message)
+        }
+    }
+}
+
 export function getPost() {
     return async dispatch => {
         try {

@@ -6,14 +6,21 @@ import {logout, setBalance} from "../../../reducers/userReducer";
 import Person from "../../../assets/img/person.png";
 import {useDispatch,useSelector} from "react-redux";
 import {getBalance} from "../../../actions/stat";
+import {getInfo} from "../../../actions/user";
 
 const Navbar = () => {
     const dispatch = useDispatch()
-    const nameP = '/user/'+useSelector(state => state.user.currentUser)
+    const login = useSelector(state => state.user.currentUser)
+    let log = window.location.pathname
     useEffect(() => {
         //dispatch(setUser(localStorage.getItem('user')))
-        dispatch(getBalance("ketrin"))
-    },[])
+        // dispatch(getInfo(login))
+        dispatch(getBalance(login))
+
+    }, [log])
+    /**/
+    const nameP = '/user/'+useSelector(state => state.user.currentUser)
+
     const coinsA = useSelector(state => state.user.balanceA)
     const coinsB = useSelector(state => state.user.balanceB)
     return (

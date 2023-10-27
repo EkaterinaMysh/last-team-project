@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {setUser,createUser,setAuth,setCreate} from "../reducers/userReducer";
+import {setUser,createUser,setAuth,setCreate, setCurUser} from "../reducers/userReducer";
 import getBrowserFingerprint from "get-browser-fingerprint";
 import jwt_decode from "jwt-decode";
 import {setFiles} from "../reducers/fileReducer";
@@ -70,12 +70,125 @@ export const login =  (log, password) => {
 export const send_post =  (title, descr, coins) => {
     return async dispatch => {
         try {
-            console.log(typeof  Number(coins));
-            alert('send')
+           // console.log(typeof  Number(coins));
+            //alert('send')
+
             const response = await axios.post(domen+'/create_offer',
-                {"title": title, "description": descr, "reward": Number(coins),
-                headers: {'x-access-token': `${localStorage.getItem('token')}`
-                }})
+                { "title": title, "description": descr, "reward": Number(coins)},
+                { headers: {'x-access-token': `${localStorage.getItem('token')}`}
+            })
+
+           // alert('ok')
+        } catch (e) {
+            alert(e.response.data.message)
+
+        }
+    }
+}
+
+export const complete_offer =  (id) => {
+    return async dispatch => {
+        try {
+            // console.log(typeof  Number(coins));
+            //alert('complete')
+
+            const response = await axios.put(domen+'/complete_offer',
+                { "offer_id": id},
+                { headers: {'x-access-token': `${localStorage.getItem('token')}`}
+                })
+
+            // alert('ok')
+        } catch (e) {
+            alert(e.response.data.message)
+
+        }
+    }
+}
+
+export const close_offer =  (id) => {
+    return async dispatch => {
+        try {
+            // console.log(typeof  Number(coins));
+            //alert('close')
+
+            const response = await axios.put(domen+'/close_offer',
+                { "offer_id": id},
+                { headers: {'x-access-token': `${localStorage.getItem('token')}`}
+                })
+
+            // alert('ok')
+        } catch (e) {
+            alert(e.response.data.message)
+
+        }
+    }
+}
+
+export const take_post =  (id) => {
+    return async dispatch => {
+        try {
+           // alert('take')
+            //alert(id)
+            const response = await axios.put(domen+'/take_offer',
+                { "offer_id": id},
+                { headers: {'x-access-token': `${localStorage.getItem('token')}`}
+                })
+
+           // alert('ok')
+        } catch (e) {
+            alert(e.response.data.message)
+
+        }
+    }
+}
+
+export const subscribe =  (login) => {
+    return async dispatch => {
+        try {
+           // alert('subs')
+            //alert(login)
+            const response = await axios.post(domen+'/make_subscribe',
+                {"login": login},
+                { headers: {'x-access-token': `${localStorage.getItem('token')}`}
+                })
+
+            //alert('ok')
+        } catch (e) {
+            alert(e.response.data.message)
+
+        }
+    }
+}
+
+
+export const unsubscribefrom =  (login) => {
+    return async dispatch => {
+        try {
+            // alert('subs')
+            //alert(login)
+            const response = await axios.post(domen+'/unsubscribe',
+                {"login": login},
+                { headers: {'x-access-token': `${localStorage.getItem('token')}`}
+                })
+
+            alert('ok')
+        } catch (e) {
+            alert(e.response.data.message)
+
+        }
+    }
+}
+
+export const RaiseLevel =  () => {
+    return async dispatch => {
+        try {
+            // alert('subs')
+            //alert(login)
+            const response = await axios.post(domen+'/raise_level',
+
+                { headers: {'x-access-token': `${localStorage.getItem('token')}`}
+                })
+
             alert('ok')
         } catch (e) {
             alert(e.response.data.message)
@@ -88,7 +201,7 @@ export const fa =  (log,password,token) => {
     return async dispatch => {
         try {
             const fingerprint = getBrowserFingerprint();
-            dispatch(setAuth(login))
+            //dispatch(setAuth(login))
             let result = log.indexOf("@")
             //alert(result)
             if (result===-1){
@@ -102,7 +215,7 @@ export const fa =  (log,password,token) => {
                 )}
             //alert(response)
 
-            dispatch(setAuth(login))
+            dispatch(setAuth(log))
             //alert('ok')
 
         } catch (e) {
@@ -135,9 +248,41 @@ export function getInfo(name) {
 
             //alert(response.oldData)
             //alert("ok")
-            dispatch(setUser(response.data.login, response.data.name, response.data.number,
-                response.data.email, response.data.level, response.data.followers,
-                response.data.following))
+            dispatch(setUser(response.data.login, response.data.name, response.data.phoneNumber,
+                response.data.email, response.data.level, response.data.subscribersCount,
+                response.data.subscribesCount))
+        } catch (e) {
+            alert(e.response.data.message)
+        }
+    }
+}
+
+export function getInfoCurUs(name) {
+    return async dispatch => {
+        try {
+            let token = localStorage.getItem('token');
+            let decodedToken = jwt_decode(token);
+            console.log("Decoded Token", decodedToken);
+            let currentDate = new Date();
+
+            // JWT exp is in seconds
+            if (decodedToken.exp * 1000 < currentDate.getTime()) {
+                console.log("Token expired.");
+                const fingerprint = getBrowserFingerprint();
+                const refresh = await axios.post(domen+'/users/refresh', {
+                    "fingerprint":fingerprint},{ withCredentials: true
+                })
+                localStorage.setItem('token', refresh.data.jwtToken);
+            }
+            const response = await axios.get(domen+'/get_user_info/'+name, {
+                headers: {'x-access-token': `${localStorage.getItem('token')}`}
+            })
+
+            //alert(response.oldData)
+            //alert("ok")
+            dispatch(setCurUser(response.data.login, response.data.name, response.data.phoneNumber,
+                response.data.email, response.data.level, response.data.subscribersCount,
+                response.data.subscribesCount))
         } catch (e) {
             alert(e.response.data.message)
         }

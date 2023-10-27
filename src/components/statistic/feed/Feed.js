@@ -27,22 +27,16 @@ const Feed = () => {
     //}
 
     //const nameP = useSelector(state => state.user.currentUser)
-    const nameP = 'admin'
+    //const nameP = 'admin'
     //const post = useSelector(state => state.home.posts)
-    const [post, setPosts]=useState([
-        {id: 1, typ:1, mail: '@@@@@', title: 'Java Script', body: 'a programming language', photo: ''},
-        {id: 2, typ:0, mail: '@@@@@', title: 'Python', body: 'a programming language', photo: ''},
-        {id: 3, typ:1, mail: '@@@@@', title: 'C++', body: 'a programming language', photo: ''},
-        {id: 4, typ:0, mail: '@@@@@', title: 'C', body: 'a programming language', photo: ''},
-        {id: 5, typ:1, mail: '@@@@@', title: 'C#', body: 'a programming language', photo: ''}
-    ]);
+
     return (
 
         <div className="main__screen">
 
             <div className="main">
                 <div className="main__content">
-                    <PostList post={post} title="Recent feed posts"/>
+                    <PostList  title="Recent feed posts"/>
                 </div>
                 <footer className="main__footer">
                     <div className="main__footer__content">

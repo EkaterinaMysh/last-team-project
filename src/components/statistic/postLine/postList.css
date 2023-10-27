@@ -32,6 +32,10 @@
     color: dodgerblue;
 }
 
+/*.post__header a{
+    width: 30%;
+}*/
+
 .post__btns__take{
     background-color: dodgerblue;
     color: whitesmoke;

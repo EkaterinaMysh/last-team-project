@@ -3,32 +3,33 @@ import {connect, useDispatch, useSelector} from "react-redux";
 import './MyProfile.css'
 import PostList from "../postLine/PostList";
 import {setUser} from "../../../reducers/userReducer";
-import {getInfo} from "../../../actions/user";
-import {getUsersPost} from "../../../actions/stat";
+import {getInfo, getInfoCurUs, RaiseLevel,} from "../../../actions/user";
+import {getExecUsersPost, getUsersPost} from "../../../actions/stat";
 import {NavLink, withRouter} from "react-router-dom";
+import {setPostExec, setPostNotExec} from "../../../reducers/postReducer";
 
 const MyProfile = () => {
     const dispatch = useDispatch()
-    //const [email, setEmail] = useState("")
-    //const [fio, setFio] = useState("")
-    //const [number, setNumber] = useState("")
-    //const [password, setPassword] = useState("")
-    //const [login, setLogin] = useState("")
-    //const dispatch = useDispatch()
-    //const [token, setToken] = useState("")
-    //const isCreate = useSelector(state => state.user.isCreate)
 
-    //const login = useSelector(state => state.user.currentUser)
+    let count = useSelector(state => state.post.execute_post)
+    //alert(4)
 
-
-    useEffect(()=>{
-        let login= window.location.pathname
+    useEffect(()=> {
+        //alert(3)
+        let login = window.location.pathname
+        //alert(1)
         login = login.slice(6)
         //alert(login)
-        dispatch(getInfo(login))
-        dispatch(getUsersPost(login))
+        dispatch(getInfoCurUs(login))
+        //alert(2)
+        //dispatch(getInfo(login))
+        //alert(count)
+        if (count === false)
+            dispatch(getUsersPost(login))
+        else
+            dispatch(getExecUsersPost(login))
 
-    },[])
+    }, [count])
 
     const divStyle = {
         color: 'red',
@@ -38,13 +39,7 @@ const MyProfile = () => {
         marginLeft: 'auto',
         marginRight: 'auto'
     };
-    /*const [post, setPosts]=useState([
-        {id: 1, mail: '@@@@@', title: 'Java Script', body: 'a programming language', photo: ''},
-        {id: 2, mail: '@@@@@', title: 'Python', body: 'a programming language', photo: ''},
-        {id: 3, mail: '@@@@@', title: 'C++', body: 'a programming language', photo: ''},
-        {id: 4, mail: '@@@@@', title: 'C', body: 'a programming language', photo: ''},
-        {id: 5, mail: '@@@@@', title: 'C#', body: 'a programming language', photo: ''}
-    ]);*/
+
     const post = useSelector(state => state.post.home)
 
     const name = useSelector(state => state.user.name)
@@ -72,11 +67,17 @@ const MyProfile = () => {
                         <div className="user_inf">
                             <p>Информация о пользователе:</p>
                             <p>Уровень: {level}</p>
+                            <button id="follow-btn" type='submit' className='follow__btn' onClick={() =>  {
+                                //let login = window.location.pathname
+                                //login = login.slice(7)
+                                //alert(login)
+                                dispatch(RaiseLevel())
+                            }
+                            }>+</button>
                             <p>Почта: {email}</p>
                             <p>Телефон: {number}</p>
                             <p>Подписчики: {followers}</p>
                             <p>Подписки: {following}</p>
-                            <button id="submit-btn" type='submit' className='submit__btn'>Написать поручение</button>
                             <div className=''>
                                 <NavLink to="/write_request"><p>Написать поручение</p></NavLink>
 
@@ -88,11 +89,37 @@ const MyProfile = () => {
                 </div>
             </div>
 
-            <div className='row text-center'>
-                <div className='col'>
-                    <PostList post={post} title="Посты пользователя"/>
+            {!count &&
+                <div>
+                    <div className="">
+                        <div className=''>
+                            <button  onClick={() =>  dispatch(setPostExec())}>Взятые поручения</button>
+                        </div>
+                    </div>
+                    <div className='row text-center'>
+                        <div className='col'>
+                            <PostList post={post} title="Посты пользователя"/>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
+            }
+            {
+                count &&
+                <div>
+                    <div className="">
+                        <div className=''>
+                            <button  onClick={() => dispatch(setPostNotExec())}>Поручения пользователя</button>
+                        </div>
+                    </div>
+                    <div className='row text-center'>
+                        <div className='col'>
+                            <PostList post={post} title="Взятые запросы"/>
+                        </div>
+
+                    </div>
+                </div>
+            }
 
 
 

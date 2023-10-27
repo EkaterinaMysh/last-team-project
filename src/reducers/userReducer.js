@@ -1,4 +1,7 @@
+import {getInfoCurUs} from "../actions/user";
+
 const SET_USER = "SET_USER"
+const SET_CUR_USER = "SET_CUR_USER"
 const SET_AUTH = "SET_AUTH"
 const SET_CREATE = "SET_CREATE"
 const CREAT_USER = "CREAT_USER"
@@ -28,6 +31,17 @@ const defaultState = {
 export default function userReducer(state = defaultState, action) {
     switch (action.type) {
         case SET_USER:
+            return {
+                ...state,
+                name: action.name,
+                number: action.number,
+                email: action.email,
+                level: action.level,
+                followers: action.followers,
+                following: action.following,
+                isAuth: true
+            }
+        case SET_CUR_USER:
             return {
                 ...state,
                 currentUser: action.user,
@@ -63,7 +77,6 @@ export default function userReducer(state = defaultState, action) {
         case SET_BALANCE:
             return {
                 ...state,
-                currentUser: action.user,
                 balanceA: action.balanceA,
                 balanceB: action.balanceB
             }
@@ -115,5 +128,18 @@ export const createUser = (login, name, number, email) => ({
     email: email,
     isCreate: true
 })
+
+export const setCurUser = (login, name, number, email, level, followers, following) => ({
+    type: SET_CUR_USER,
+    user: login,
+    name: name,
+    number: number,
+    email: email,
+    followers: followers,
+    following: following,
+    level: level,
+    isAuth: true})
+
+
 
 export const logout = () => ({type: LOGOUT})

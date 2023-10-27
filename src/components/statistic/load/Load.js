@@ -34,9 +34,9 @@ const Load = () => {
             }
             {isIn ?
                 (   <div className="load__box">
-                        <div className="load__line" style={divLStyle}> </div>
-                        <div className="load__in"  style={divStyle}>Обрабатывается</div>
-                    </div>)
+                    <div className="load__line" style={divLStyle}> </div>
+                    <div className="load__in"  style={divStyle}>Обрабатывается</div>
+                </div>)
                 :
                 (   <div className="load__box">
                     <div className="load__line"> </div>

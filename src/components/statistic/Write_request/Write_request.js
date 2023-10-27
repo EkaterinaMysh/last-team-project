@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import './Write_request.css';
 import {fa, login, send_post} from "../../../actions/user";
 import Input from "../../../utils/Input";
+import {NavLink} from "react-router-dom";
 
 const Write_request = () => {
 
@@ -31,8 +32,13 @@ const Write_request = () => {
                         <Input value={Coins} setValue={setCoins} type="number" id="coins" className="wr_coins"></Input>
                     </div>
                     <div className={""}>
-                        <button className="" onClick={() => dispatch(send_post(Title, Descr, Coins))}>Отправить</button>
+
+                        <button className=""  onClick={event => {
+                            event.preventDefault();
+                            dispatch(send_post(Title, Descr, Coins));
+                        }}>Отправить</button>
                     </div>
+
                 </form>
 
                 <footer className="main__footer">
