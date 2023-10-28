@@ -42,3 +42,38 @@
 .coins h4{
     margin-bottom: 1%;
 }
+
+.how_many{
+    font-size: 12px;
+}
+
+.fl__wi__send{
+    min-width: 100px ;
+    max-width: 300px ;
+    width: 80%;
+    height: 40px;
+    padding: 0;
+    background: rgb(255, 129, 129);
+    border: 0;
+    border-radius: 50px;
+    color: white;
+    margin-top: 20px;
+}
+
+.fl__wi__send__div{
+   display: flex;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.checkbox__pay{
+    width: 15px;
+    min-width: 15px;
+    min-height: 15px;
+
+}
+
+.text_checkbox{
+    font-size: 14px;
+    min-width: 50%;
+}

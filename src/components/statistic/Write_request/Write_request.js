@@ -7,6 +7,8 @@ import {getLeftPost} from "../../../actions/stat"
 import Input from "../../../utils/Input";
 import {NavLink} from "react-router-dom";
 import {getExecUsersPost, getUsersPost} from "../../../actions/stat";
+import * as PropTypes from "prop-types";
+
 
 const Write_request = () => {
     let size
@@ -25,10 +27,19 @@ const Write_request = () => {
 
     }, [])
     const left = useSelector(state => state.user.left)
+    //let left = 0
+    let count_left = false
+    if (left === 0) count_left = true
+
     const [Title, setTitle] = useState("")
     const [Descr, setDescr] = useState("")
+    const [Pay, setPay] = useState(true)
     const [Coins, setCoins] = useState("")
+    const [checked, setChecked] = React.useState(false);
 
+    const handleChange = () => {
+        setChecked(!checked);
+    };
 
     return (
 
@@ -46,16 +57,26 @@ const Write_request = () => {
                     </div>
                     <div className="coins">
                         <h4>Сколько А-монет будет списано за поручение?</h4>
+                        <p className="how_many">Поставьте в поле значение 0, если хотите написать обычный пост, а не запрос.</p>
                         <Input value={Coins} setValue={setCoins} type="number" id="coins" className="wr_coins"></Input>
                     </div>
                     <div className="text_request">
                         <p>Обычных постов можно написать:{left}/{size}</p>
                     </div>
-                    <div className={""}>
+                    {(count_left)?
+                        <div className="fl__wi__send__div">
+                        <input type="checkbox" onChange={handleChange} checked={checked} className="checkbox__pay"></input>
+                        <p className="text_checkbox">Потратить 5 Б-монет, чтобы выложить обычный пост</p>
+                        </div>
+                        :
+                        <div></div>
+                    }
+                    <div className="fl__wi__send__div">
 
-                        <button className=""  onClick={event => {
+                        <button className='fl__wi__send'   onClick={event => {
                             event.preventDefault();
-                            dispatch(send_post(Title, Descr, Coins));
+
+                            dispatch(send_post(Title, Descr, Coins, checked));
                         }}>Отправить</button>
                     </div>
 

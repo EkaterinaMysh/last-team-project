@@ -40,9 +40,7 @@ export const registration = (fio,login, password,number,email) => {
 export const login =  (log, password) => {
     return async dispatch => {
         try {
-            let result = log.indexOf("@")
-            //alert(result)
-            if (result===-1){
+
             const response = await axios.post(domen+'/login', {
                 "login":log,"password":password
             })
@@ -50,15 +48,7 @@ export const login =  (log, password) => {
                     dispatch(setCreate())
                     localStorage.setItem('token', response.data.token)
                 }
-            } else {
-                const response = await axios.post(domen+'/login', {
-                    "email":log,"password":password
-                })
-                if(response.status===201) {
-                    dispatch(setCreate())
-                    localStorage.setItem('token', response.data.token)
-                }
-            }
+
 
         } catch (e) {
             alert(e.response.data.message)
@@ -67,14 +57,14 @@ export const login =  (log, password) => {
     }
 }
 
-export const send_post =  (title, descr, coins) => {
+export const send_post =  (title, descr, coins, pay) => {
     return async dispatch => {
         try {
            // console.log(typeof  Number(coins));
             //alert('send')
 
             const response = await axios.post(domen+'/create_offer',
-                { "title": title, "description": descr, "reward": Number(coins)},
+                { "title": title, "description": descr, "reward": Number(coins), "pay": pay},
                 { headers: {'x-access-token': `${localStorage.getItem('token')}`}
             })
 
@@ -151,7 +141,7 @@ export const delete_post =  (id) => {
             // console.log(typeof  Number(coins));
             //alert('close')
 
-            const response = await axios.delete(domen+'/delete_offer',
+            const response = await axios.delete(domen+'/offer/'+ id,
                 //{ "offer_id": id},
                 { headers: {'x-access-token': `${localStorage.getItem('token')}`}
                 })
@@ -170,7 +160,7 @@ export const DeleteUser =  () => {
         try {
             // alert('take')
             //alert(id)
-            const response = await axios.delete(domen+'/delete_user',
+            const response = await axios.delete(domen+'/user',
 
                 { headers: {'x-access-token': `${localStorage.getItem('token')}`}
                 })

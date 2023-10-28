@@ -25,7 +25,7 @@ const PostItem = (props) => {
 
     const id_post = props.post.id
     if (props.post.priority===0) {
-        if (props.post.reward === 0 || props.post.status === "Closed" || props.post.status === "Done" || props.post.status === "Executing") {
+        if (props.post.reward === 0 || props.post.status === "Closed" || props.post.status === "Done" || props.post.status === "Executing" || props.post.ownerLogin===userr) {
             return (
                 <div className='post'>
                     <div className='post__content'>
@@ -66,7 +66,7 @@ const PostItem = (props) => {
         }
     }
     else {
-        if (props.post.reward === 0 || props.post.status === "Closed" || props.post.status === "Done" || props.post.status === "Executing") {
+        if (props.post.reward === 0 || props.post.status === "Closed" || props.post.status === "Done" || props.post.status === "Executing" || props.post.ownerLogin===userr) {
             return (
                 <div className='post_pr'>
                     <div className='post__content'>

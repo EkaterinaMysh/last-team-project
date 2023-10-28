@@ -129,14 +129,14 @@ const UserProfile = () => {
                 </div>
             </div>
             {!count &&
-                <div>
+                <div  >
                     <div className="">
                     <div className=''>
                         <button className='fl__wi btn__mypr'  onClick={() =>  dispatch(setPostExec())}>Взятые поручения</button>
                     </div>
             </div>
             <div className='row text-center'>
-                <div className='col'>
+                <div className='col make__flex'>
                     <PostList post={post} title="Посты пользователя"/>
                 </div>
 
@@ -152,7 +152,7 @@ const UserProfile = () => {
                         </div>
                     </div>
                 <div className='row text-center'>
-                    <div className='col'>
+                    <div className='col make__flex'>
                         <PostList post={post} title="Взятые запросы"/>
                     </div>
 

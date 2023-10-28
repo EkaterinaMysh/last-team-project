@@ -118,6 +118,11 @@ h1 {
     margin: 3% 0;
 }
 
+.make__flex {
+    display: flex;
+    justify-content: center
+}
+
 .raisepr__bt{
     min-width: 80px ;
     max-width: 200px ;
@@ -175,21 +180,29 @@ h1 {
 }
 
 .write_req{
-    padding: 0 10px;
+
     font-size: 15px;
 }
+
 .write_req_lk{
     justify-content: flex-start;
-    width: 80%;
+    width: 85%;
     color: #747474;
     font-size: 18px;
     display: flex;
     border: rgb(255, 129, 129) 2px solid;
     border-radius: 25px;
-    padding: 10px 0px 10px 0px;
+    padding: 10px 10px;
     margin: 5px 0;
     align-items: center;
     transition: background 0.7s ease, color 0.5s ease
+}
+
+.write_req_lk:hover,
+.write_req_lk:focus,
+.write_req_lk:active {
+    background-color: white;
+    color: #747474;
 }
 
 .btn__mypr{

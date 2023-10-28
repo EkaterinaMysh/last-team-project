@@ -33,6 +33,7 @@ const PostItemUser = (props) => {
     //const id = id_1 + props.post.ownerLogin
     const owner = props.post.ownerLogin
     const id_post = props.post.id
+    const pr = props.post.priority
     //alert(props.post.status)
     let count_open
     if (props.post.status === "Open"){
@@ -78,6 +79,16 @@ const PostItemUser = (props) => {
     if (login===userr) {
         count_page = true
     } else count_page = false
+    let count_pr
+    if (pr===0) {
+        count_pr = true
+    } else count_pr = false
+    console.log("count_pr: ", count_pr)
+    let count_post
+    if (props.post.status === "Post") {
+        count_post = true
+    } else count_post = false
+    //console.log("count_post: ", count_post)
     //console.log("count_execuser: ", count_execuser)
     //console.log("props.post.executorLogin: ", props.post.executorLogin)
 
@@ -94,12 +105,18 @@ const PostItemUser = (props) => {
 
                 </div>
                 {
-                    (count_page && count_owner && count_0)?
+
+                    (count_page && count_owner && count_0 && count_pr)?
                         <div className="buttons_st">
                             <button className='raisepr__bt'   onClick={() => dispatch(raise_priority(id_post))}>Повысить приоритет</button>
                             <button className='deleterq__bt' onClick={() => dispatch(delete_post(id_post))}>Удалить пост</button>
                         </div>
                         :
+                        (count_page && count_owner && count_0)?
+                            <div className="buttons_st">
+                                <button className='deleterq__bt' onClick={() => dispatch(delete_post(id_post))}>Удалить пост</button>
+                            </div>
+                            :
                         <div></div>
 
                 }
@@ -115,23 +132,38 @@ const PostItemUser = (props) => {
                                     <button className='deleterq__bt' onClick={() => dispatch(delete_post(id_post))}>Удалить пост</button>
                                 </div>
                                 :
-                                (count_open)?
+                                (count_open && count_pr)?
                                     <div className="buttons_st">
                                         <button className='raisepr__bt'   onClick={() => dispatch(raise_priority(id_post))}>Повысить приоритет</button>
                                         <button className='deleterq__bt' onClick={() => dispatch(delete_post(id_post))}>Удалить пост</button>
                                     </div>
                                         :
-                                    (count_exec)?
+                                    (count_open)?
                                         <div className="buttons_st">
+                                            <button className='deleterq__bt' onClick={() => dispatch(delete_post(id_post))}>Удалить пост</button>
+
                                         </div>
                                         :
-                                        <div></div>
+                                        (!count_pr)?
+                                            <div className="buttons_st">
+                                                <button className='deleterq__bt' onClick={() => dispatch(delete_post(id_post))}>Удалить пост</button>
+                                            </div>
+                                                :
+
+                                                (count_exec)?
+                                                    <div className="buttons_st">
+
+                                                    </div>
+                                                    :
+                                                    <div>
+                                                    </div>
+
+
                         :
                         <div></div>
-
                 }
                 {
-                    (count_page && count_execuser && count_not0)?
+                    (count_page && count_execuser && count_not0 && count_exec)?
                         <div className="buttons_st">
                             <button className='deleterq__bt' onClick={() => dispatch(complete_offer(id_post))}>Завершить</button></div>
                         :
