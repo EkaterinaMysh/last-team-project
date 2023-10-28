@@ -124,6 +124,65 @@ export const close_offer =  (id) => {
     }
 }
 
+
+export const raise_priority =  (id) => {
+    return async dispatch => {
+        try {
+            // console.log(typeof  Number(coins));
+            //alert('close')
+
+            const response = await axios.post(domen+'/raise_priority',
+                { "offer_id": id},
+                { headers: {'x-access-token': `${localStorage.getItem('token')}`}
+                })
+
+             alert('ok')
+        } catch (e) {
+            alert(e.response.data.message)
+
+        }
+    }
+}
+
+
+export const delete_post =  (id) => {
+    return async dispatch => {
+        try {
+            // console.log(typeof  Number(coins));
+            //alert('close')
+
+            const response = await axios.delete(domen+'/delete_offer',
+                //{ "offer_id": id},
+                { headers: {'x-access-token': `${localStorage.getItem('token')}`}
+                })
+
+            alert('ok')
+        } catch (e) {
+            alert(e.response.data.message)
+
+        }
+    }
+}
+
+
+export const DeleteUser =  () => {
+    return async dispatch => {
+        try {
+            // alert('take')
+            //alert(id)
+            const response = await axios.delete(domen+'/delete_user',
+
+                { headers: {'x-access-token': `${localStorage.getItem('token')}`}
+                })
+
+            alert('ok')
+        } catch (e) {
+            alert(e.response.data.message)
+
+        }
+    }
+}
+
 export const take_post =  (id) => {
     return async dispatch => {
         try {
@@ -171,7 +230,7 @@ export const unsubscribefrom =  (login) => {
                 { headers: {'x-access-token': `${localStorage.getItem('token')}`}
                 })
 
-            alert('ok')
+            //alert('ok')
         } catch (e) {
             alert(e.response.data.message)
 
@@ -184,10 +243,10 @@ export const RaiseLevel =  () => {
         try {
             // alert('subs')
             //alert(login)
-            const response = await axios.post(domen+'/raise_level',
-
+            const response = await axios.post(domen+'/raise_level', {},
                 { headers: {'x-access-token': `${localStorage.getItem('token')}`}
                 })
+
 
             alert('ok')
         } catch (e) {
@@ -196,6 +255,8 @@ export const RaiseLevel =  () => {
         }
     }
 }
+
+
 
 export const fa =  (log,password,token) => {
     return async dispatch => {
@@ -242,15 +303,15 @@ export function getInfo(name) {
                 })
                 localStorage.setItem('token', refresh.data.jwtToken);
             }
-            const response = await axios.get(domen+'/get_user_info/'+name, {
-                headers: {'x-access-token': `${localStorage.getItem('token')}`}
+            const response = await axios.get(domen+'/get_user_info/'+name,
+                {headers: {'x-access-token': `${localStorage.getItem('token')}`}
             })
 
             //alert(response.oldData)
             //alert("ok")
             dispatch(setUser(response.data.login, response.data.name, response.data.phoneNumber,
-                response.data.email, response.data.level, response.data.subscribersCount,
-                response.data.subscribesCount))
+                response.data.email, response.data.level, response.data.subscribersCount, response.data.subscribers,
+                response.data.subscribesCount, response.data.subscribes))
         } catch (e) {
             alert(e.response.data.message)
         }
@@ -281,8 +342,8 @@ export function getInfoCurUs(name) {
             //alert(response.oldData)
             //alert("ok")
             dispatch(setCurUser(response.data.login, response.data.name, response.data.phoneNumber,
-                response.data.email, response.data.level, response.data.subscribersCount,
-                response.data.subscribesCount))
+                response.data.email, response.data.level, response.data.subscribersCount, response.data.subscribers,
+                response.data.subscribesCount, response.data.subscribes))
         } catch (e) {
             alert(e.response.data.message)
         }

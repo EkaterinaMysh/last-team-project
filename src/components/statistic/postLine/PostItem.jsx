@@ -12,6 +12,7 @@ const PostItem = (props) => {
     const log = props.post.ownerLogin
     //const userr = props.user.currentUser
     let id
+
     if (log === userr) {
         //id_1 = true
          id = '/user/' + props.post.ownerLogin
@@ -23,44 +24,87 @@ const PostItem = (props) => {
     //const id = id_1 + props.post.ownerLogin
 
     const id_post = props.post.id
-    if (props.post.reward===0 || props.post.status === "Closed" || props.post.status === "Done" || props.post.status === "Executing"){
-        return(
-        <div className='post'>
-            <div className='post__content'>
-                <div className='post__header'>
-                    <NavLink to={id}>{props.post.ownerLogin}</NavLink>
-                    <div>{props.number}</div>
+    if (props.post.priority===0) {
+        if (props.post.reward === 0 || props.post.status === "Closed" || props.post.status === "Done" || props.post.status === "Executing") {
+            return (
+                <div className='post'>
+                    <div className='post__content'>
+                        <div className='post__header'>
+                            <NavLink className="login__name" to={id}>{props.post.ownerLogin}</NavLink>
+
+                        </div>
+                        <strong>{props.post.title}</strong>
+                        <div>
+                            {props.post.description}
+
+                        </div>
+                    </div>
+                </div>)
+        }
+        if (props.post.reward > 0) {
+
+            return (
+                <div className='post'>
+                    <div className='post__content'>
+                        <div className='post__header'>
+                            <NavLink className="login__name" to={id}>{props.post.ownerLogin}</NavLink>
+                        </div>
+                        <strong>{props.post.title}</strong>
+                        <div>
+
+                            {props.post.description}
+
+                        </div>
+
+                    </div>
+                    <div className='post__btns'>
+                        <button className='post__btns__take' onClick={() => dispatch(take_post(id_post))}>Take order
+                        </button>
+                    </div>
                 </div>
-                <strong>{props.post.title}</strong>
-                <div>
-                    {props.post.description}
-                    {props.post.photo}
-                </div>
-            </div>
-        </div>)
+            )
+        }
     }
-    if (props.post.reward>0) {
+    else {
+        if (props.post.reward === 0 || props.post.status === "Closed" || props.post.status === "Done" || props.post.status === "Executing") {
+            return (
+                <div className='post_pr'>
+                    <div className='post__content'>
+                        <div className='post__header'>
+                            <NavLink className="lg_pr" to={id}>{props.post.ownerLogin}</NavLink>
 
-        return(
-            <div className='post'>
-                <div className='post__content'>
-                    <div className='post__header'>
-                        <NavLink to={id}>{props.post.ownerLogin}</NavLink>
-                        <div>{props.number}</div>
+                        </div>
+                        <strong>{props.post.title}</strong>
+                        <div>
+                            {props.post.description}
+
+                        </div>
                     </div>
-                    <strong>{props.post.title}</strong>
-                    <div>
+                </div>)
+        }
+        if (props.post.reward > 0) {
 
-                        {props.post.description}
-                        {props.post.photo}
+            return (
+                <div className='post_pr'>
+                    <div className='post__content'>
+                        <div className='post__header'>
+                            <NavLink className="lg_pr" to={id}>{props.post.ownerLogin}</NavLink>
+                        </div>
+                        <strong>{props.post.title}</strong>
+                        <div>
+
+                            {props.post.description}
+
+                        </div>
+
                     </div>
-
+                    <div className='post__btns'>
+                        <button className='post__btns__take' onClick={() => dispatch(take_post(id_post))}>Take order
+                        </button>
+                    </div>
                 </div>
-                <div className='post__btns'>
-                    <button className='post__btns__take' onClick={() => dispatch(take_post(id_post))}>Take order</button>
-                </div>
-            </div>
-        )
+            )
+        }
     }
 
 };

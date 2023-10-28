@@ -4,21 +4,19 @@ import {useDispatch, useSelector} from "react-redux";
 //import {getFiles, checkFile} from "../../../actions/stat";
 import MyProfile from "./../myProfile/MyProfile";
 import Load from "./../load/Load";
-
-import {getPost, uploadFile} from "../../../actions/stat";
 import PostList from "./../postLine/PostList";
 import {login} from "../../../actions/user";
+import {getPost, getUsersPost, getExecUsersPost, getFollowingsPost} from "../../../actions/stat";
 
 const Feed = () => {
     const dispatch = useDispatch()
 
 
-    //const mess = useSelector(state => state.load.type)
+    const mess = useSelector(state => state.load.type)
 
-    //useEffect(() => {
-    //dispatch(setUser(localStorage.getItem('user')))
-        //dispatch(getFollowingsPost())
-    //})
+    useEffect(() => {
+        dispatch(getFollowingsPost())
+    }, [])
 
     //function fileUploadHandler(event) {
     //    const files = [...event.target.files]
@@ -28,15 +26,14 @@ const Feed = () => {
 
     //const nameP = useSelector(state => state.user.currentUser)
     //const nameP = 'admin'
-    //const post = useSelector(state => state.home.posts)
-
+    let post = useSelector(state => state.post.home)
     return (
 
         <div className="main__screen">
 
             <div className="main">
                 <div className="main__content">
-                    <PostList  title="Recent feed posts"/>
+                    <PostList post={post} title="Recent feed posts"/>
                 </div>
                 <footer className="main__footer">
                     <div className="main__footer__content">

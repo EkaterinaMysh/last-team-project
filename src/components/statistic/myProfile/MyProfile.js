@@ -3,7 +3,7 @@ import {connect, useDispatch, useSelector} from "react-redux";
 import './MyProfile.css'
 import PostList from "../postLine/PostList";
 import {setUser} from "../../../reducers/userReducer";
-import {getInfo, getInfoCurUs, RaiseLevel,} from "../../../actions/user";
+import {getInfo, getInfoCurUs, RaiseLevel,handlePointerEnterFol, DeleteUser} from "../../../actions/user";
 import {getExecUsersPost, getUsersPost} from "../../../actions/stat";
 import {NavLink, withRouter} from "react-router-dom";
 import {setPostExec, setPostNotExec} from "../../../reducers/postReducer";
@@ -15,15 +15,10 @@ const MyProfile = () => {
     //alert(4)
 
     useEffect(()=> {
-        //alert(3)
         let login = window.location.pathname
-        //alert(1)
         login = login.slice(6)
-        //alert(login)
         dispatch(getInfoCurUs(login))
-        //alert(2)
-        //dispatch(getInfo(login))
-        //alert(count)
+
         if (count === false)
             dispatch(getUsersPost(login))
         else
@@ -43,14 +38,32 @@ const MyProfile = () => {
     const post = useSelector(state => state.post.home)
 
     const name = useSelector(state => state.user.name)
+    const following_list = useSelector(state => state.user.following_list)
     //const login = useSelector(state => state.user.currentUser)
+    const followers_list = useSelector(state => state.user.followers_list)
     const number = useSelector(state => state.user.number)
     const email = useSelector(state => state.user.email)
     const followers = useSelector(state => state.user.followers)
     const following = useSelector(state => state.user.following)
     const level = useSelector(state => state.user.level)
+    const [showFollowersList, setShowFollowersList] = useState(false);
+    const handleClick = () => {
+            if (showFollowersList===false && followers!==0){
+                setShowFollowersList(true);
+            }
+            else setShowFollowersList(false);
 
-    return (
+    };
+    const [showFollowingList, setShowFollowingList] = useState(false);
+    const handleClickIng = () => {
+        if (showFollowingList===false && following!==0){
+            setShowFollowingList(true);
+        }
+        else setShowFollowingList(false);
+
+    };
+
+        return (
         <div className={"container__profile"}>
             <div className="thread-header border bg-light shadow">
                 <div className='rowа text-center'>
@@ -59,27 +72,39 @@ const MyProfile = () => {
                             <h1>
                                 {name}
                             </h1>
-                            <div className="">
-                                <img src="/media/cat1.svg" width="350" height="350" alt=""></img>
-                            </div>
+                            <p>Информация о пользователе:</p>
+                            <p>Уровень: {level}</p>
+                            <p>Почта: {email}</p>
+                            <p>Телефон: {number}</p>
+                            <p onClick={handleClick}>Подписчики: {followers}</p>
+                            {showFollowersList && followers_list }
+
+                            <p onClick={handleClickIng}>Подписки: {following}</p>
+                            {showFollowingList && following_list }
                         </div>
 
                         <div className="user_inf">
-                            <p>Информация о пользователе:</p>
-                            <p>Уровень: {level}</p>
-                            <button id="follow-btn" type='submit' className='follow__btn' onClick={() =>  {
+                            <p>Возможные действия:</p>
+                            <div className=''>
+                            <button id="follow-btn" type='submit' className='fl__wi' onClick={() =>  {
                                 //let login = window.location.pathname
                                 //login = login.slice(7)
                                 //alert(login)
                                 dispatch(RaiseLevel())
                             }
-                            }>+</button>
-                            <p>Почта: {email}</p>
-                            <p>Телефон: {number}</p>
-                            <p>Подписчики: {followers}</p>
-                            <p>Подписки: {following}</p>
+                            }>Поднять уровень</button>
+                            </div>
                             <div className=''>
-                                <NavLink to="/write_request"><p>Написать поручение</p></NavLink>
+                            <button id="delete-btn" type='submit' className='fl__wi' onClick={() =>  {
+                                //let login = window.location.pathname
+                                //login = login.slice(7)
+                                //alert(login)
+                                dispatch(DeleteUser())
+                            }
+                            }>Удалить аккаунт</button>
+                            </div>
+                            <div className=''>
+                                <NavLink to="/write_request" className="write_req_lk"><p className="write_req">Написать поручение</p></NavLink>
 
                             </div>
 
@@ -93,7 +118,7 @@ const MyProfile = () => {
                 <div>
                     <div className="">
                         <div className=''>
-                            <button  onClick={() =>  dispatch(setPostExec())}>Взятые поручения</button>
+                            <button  className='fl__wi btn__mypr' onClick={() =>  dispatch(setPostExec())}>Взятые поручения</button>
                         </div>
                     </div>
                     <div className='row text-center'>
@@ -109,7 +134,7 @@ const MyProfile = () => {
                 <div>
                     <div className="">
                         <div className=''>
-                            <button  onClick={() => dispatch(setPostNotExec())}>Поручения пользователя</button>
+                            <button className='fl__wi  btn__mypr'  onClick={() => dispatch(setPostNotExec())}>Поручения пользователя</button>
                         </div>
                     </div>
                     <div className='row text-center'>

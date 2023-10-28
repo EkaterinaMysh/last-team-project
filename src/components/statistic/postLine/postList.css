@@ -4,7 +4,17 @@
     margin-top: 15px;
     align-items: center;
     width: calc(100% - 30px - 10px);
-    box-shadow: 0px 5px 5px gray;
+    box-shadow: 0px 5px 5px grey;
+}
+
+.post_pr {
+    padding: 15px;
+    border: 2px solid teal;
+    margin-top: 15px;
+    background-color: antiquewhite;
+    align-items: center;
+    width: calc(100% - 30px - 10px);
+    box-shadow: 0px 5px 5px grey;
 }
 
 .post__btns {
@@ -26,6 +36,30 @@
 
 }
 
+.login__name{
+    border: 0;
+    margin: 0;
+}
+
+.lg_pr{
+    border: 0;
+    margin: 0;
+}
+
+.lg_pr:hover,
+.lg_pr:focus,
+.lg_pr:active {
+    background-color: antiquewhite;
+    color: #747474
+}
+
+.login__name:hover,
+.login__name:focus,
+.login__name:active {
+    background-color: white;
+    color: #747474
+}
+
 .post__header{
     display: flex;
     justify-content: space-between;
@@ -37,7 +71,7 @@
 }*/
 
 .post__btns__take{
-    background-color: dodgerblue;
+    background-color: rgb(255, 129, 129);;
     color: whitesmoke;
     border: 0px;
     border-radius: 10px;

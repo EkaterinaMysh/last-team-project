@@ -2,16 +2,33 @@ import React, {useState,useRef,useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 
 import './Write_request.css';
-import {fa, login, send_post} from "../../../actions/user";
+import {fa, getInfoCurUs, login, send_post} from "../../../actions/user";
+import {getLeftPost} from "../../../actions/stat"
 import Input from "../../../utils/Input";
 import {NavLink} from "react-router-dom";
+import {getExecUsersPost, getUsersPost} from "../../../actions/stat";
 
 const Write_request = () => {
+    let size
+    const level = useSelector(state => state.user.level)
+    if (level < 3){
+        size=3
+    }
+    else if (level < 5)
+    {
+        size = 5
+    }
+    else size = 7
+    const dispatch = useDispatch()
+    useEffect(()=> {
+        dispatch(getLeftPost())
 
+    }, [])
+    const left = useSelector(state => state.user.left)
     const [Title, setTitle] = useState("")
     const [Descr, setDescr] = useState("")
     const [Coins, setCoins] = useState("")
-    const dispatch = useDispatch()
+
 
     return (
 
@@ -30,6 +47,9 @@ const Write_request = () => {
                     <div className="coins">
                         <h4>Сколько А-монет будет списано за поручение?</h4>
                         <Input value={Coins} setValue={setCoins} type="number" id="coins" className="wr_coins"></Input>
+                    </div>
+                    <div className="text_request">
+                        <p>Обычных постов можно написать:{left}/{size}</p>
                     </div>
                     <div className={""}>
 

@@ -107,8 +107,7 @@ h1 {
 
 .follow__btn{
     min-width: 100px ;
-    max-width: 140px ;
-    width: 30%;
+    width: 55%;
     height: 40px;
     padding: 0;
     background: rgb(255, 129, 129);
@@ -122,5 +121,5 @@ h1 {
     flex-direction: row;
 }
 .user_inf{
-    margin: 8% 5%;
+    margin: 0 0;
 }

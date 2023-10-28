@@ -7,6 +7,8 @@ const SET_CREATE = "SET_CREATE"
 const CREAT_USER = "CREAT_USER"
 const LOGOUT = "LOGOUT"
 const SET_BALANCE = "SET_BALANCE"
+const SET_POST_LEFT = "SET_POST_LEFT"
+
 
 
 const defaultState = {
@@ -20,9 +22,13 @@ const defaultState = {
     email: [],
     level: [],
     followers: [],
+    followers_list: [],
     following: [],
+    following_list: [],
     balanceA: [],
     balanceB: [],
+    left: [],
+    count: 0,
     //isAuth: (localStorage.getItem('token')!=null),
     isAuth: false,
     isCreate: false
@@ -38,7 +44,9 @@ export default function userReducer(state = defaultState, action) {
                 email: action.email,
                 level: action.level,
                 followers: action.followers,
+                followers_list: action.followers_list,
                 following: action.following,
+                following_list: action.following_list,
                 isAuth: true
             }
         case SET_CUR_USER:
@@ -50,7 +58,9 @@ export default function userReducer(state = defaultState, action) {
                 email: action.email,
                 level: action.level,
                 followers: action.followers,
+                followers_list: action.followers_list,
                 following: action.following,
+                following_list: action.following_list,
                 isAuth: true
             }
         case SET_AUTH:
@@ -74,6 +84,12 @@ export default function userReducer(state = defaultState, action) {
                 email: action.email,
                 isCreate: true
             }
+
+        case SET_POST_LEFT:
+            return {
+                ...state,
+                left: action.left
+            }
         case SET_BALANCE:
             return {
                 ...state,
@@ -93,14 +109,16 @@ export default function userReducer(state = defaultState, action) {
     }
 }
 
-export const setUser = (login, name, number, email, level, followers, following) => ({
+export const setUser = (login, name, number, email, level, followers,followers_list, following, following_list) => ({
     type: SET_USER,
     user: login,
     name: name,
     number: number,
     email: email,
     followers: followers,
+    followers_list: followers_list,
     following: following,
+    following_list: following_list,
     level: level,
     isAuth: true})
 
@@ -113,6 +131,11 @@ export const setBalance = (A, B) => ({
     type: SET_BALANCE,
     balanceA: A,
     balanceB: B
+})
+
+export const setLeftPost = (left) => ({
+    type: SET_POST_LEFT,
+    left: left
 })
 
 
@@ -129,14 +152,16 @@ export const createUser = (login, name, number, email) => ({
     isCreate: true
 })
 
-export const setCurUser = (login, name, number, email, level, followers, following) => ({
+export const setCurUser = (login, name, number, email, level, followers,followers_list, following, following_list) => ({
     type: SET_CUR_USER,
     user: login,
     name: name,
     number: number,
     email: email,
     followers: followers,
+    followers_list: followers_list,
     following: following,
+    following_list: following_list,
     level: level,
     isAuth: true})
 

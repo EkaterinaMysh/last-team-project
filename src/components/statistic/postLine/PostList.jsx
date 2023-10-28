@@ -9,9 +9,11 @@ const PostList = ({post, title}) => {
     let login = window.location.pathname
     login = login.slice(1,2)
 
+
     //alert(login)
     if (login==='h')
-    {return (
+    {
+        return (
         <div className='list__post'>
             <h1 className='list__post__title'>{title}</h1>
             {post.map((post, index)=>

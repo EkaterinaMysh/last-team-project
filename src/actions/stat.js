@@ -4,7 +4,7 @@ import jwt_decode from "jwt-decode";
 import getBrowserFingerprint from "get-browser-fingerprint";
 import {beginLoad, endLoad, inLoad, closeLoad} from "../reducers/loadReducer";
 import {setPost} from "../reducers/postReducer";
-import {setBalance} from "../reducers/userReducer";
+import {setBalance, setLeftPost} from "../reducers/userReducer";
 
 const domen='http://192.168.7.185:8080'
 
@@ -52,6 +52,52 @@ export function getUsersPost(login) {
             //alert("ok")
 
             dispatch(setPost(response.data))
+        } catch (e) {
+            alert(e.response.data.message)
+        }
+    }
+}
+
+export function getFollowingsPost() {
+    return async dispatch => {
+        try {
+            let token = localStorage.getItem('token');
+            let decodedToken = jwt_decode(token);
+            console.log("Decoded Token", decodedToken);
+            let currentDate = new Date();
+
+            // JWT exp is in seconds
+            if (decodedToken.exp * 1000 < currentDate.getTime()) {
+                console.log("Token expired.");
+                const fingerprint = getBrowserFingerprint();
+                const refresh = await axios.post(domen+'/users/refresh', {
+                    "fingerprint":fingerprint},{ withCredentials: true
+                })
+                localStorage.setItem('token', refresh.data.jwtToken);
+            }
+            const response = await axios.get(domen+'/show_subscribes_posts', {
+                headers: {'x-access-token': `${localStorage.getItem('token')}`}
+            })
+
+            dispatch(setPost(response.data))
+        } catch (e) {
+            alert(e.response.data.message)
+        }
+    }
+}
+
+export function getLeftPost() {
+    return async dispatch => {
+        try {
+
+            const response = await axios.get(domen+'/posts_left', {
+                headers: {'x-access-token': `${localStorage.getItem('token')}`}
+            })
+
+           // alert(response.data)
+           // alert("ok")
+
+            dispatch(setLeftPost(response.data))
         } catch (e) {
             alert(e.response.data.message)
         }
