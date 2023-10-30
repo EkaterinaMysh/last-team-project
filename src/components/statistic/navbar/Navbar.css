@@ -26,6 +26,7 @@
     font-family:  sans-serif;
     font-size: 1.3rem;
     color: black;
+    background-color: white;
 }
 .main__toolbar__money {
     display: flex;

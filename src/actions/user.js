@@ -5,7 +5,7 @@ import jwt_decode from "jwt-decode";
 import {setFiles} from "../reducers/fileReducer";
 
 let timer = null;
-const domen='http://192.168.7.185:8080'
+const domen='http://192.168.206.69:8080'
 
 function showError(message) {
     if (timer !== null) {

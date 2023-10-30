@@ -9,6 +9,8 @@ import {take_post, complete_offer, close_offer, raise_priority, delete_post} fro
 const PostItemUser = (props) => {
     const dispatch = useDispatch()
     let userr = useSelector(state => state.user.currentUser)
+    let lvl = useSelector(state => state.user.level)
+
     const log = props.post.ownerLogin
 
     let login
@@ -39,6 +41,10 @@ const PostItemUser = (props) => {
     if (props.post.status === "Open"){
         count_open = true
     } else count_open = false
+    let count_lvl
+    if (lvl > 3){
+        count_lvl = true
+    } else count_lvl = false
     let count_done
     if (props.post.status === "Done"){
         count_done = true
@@ -106,18 +112,19 @@ const PostItemUser = (props) => {
                 </div>
                 {
 
-                    (count_page && count_owner && count_0 && count_pr)?
+                    (count_page && count_owner && count_0 && count_pr && count_lvl)?
                         <div className="buttons_st">
                             <button className='raisepr__bt'   onClick={() => dispatch(raise_priority(id_post))}>Повысить приоритет</button>
                             <button className='deleterq__bt' onClick={() => dispatch(delete_post(id_post))}>Удалить пост</button>
                         </div>
-                        :
-                        (count_page && count_owner && count_0)?
-                            <div className="buttons_st">
-                                <button className='deleterq__bt' onClick={() => dispatch(delete_post(id_post))}>Удалить пост</button>
-                            </div>
-                            :
-                        <div></div>
+                                :
+                            (count_page && count_owner && count_0)?
+                                <div className="buttons_st">
+                                    <button className='deleterq__bt' onClick={() => dispatch(delete_post(id_post))}>Удалить пост</button>
+                                </div>
+                                :
+                                <div></div>
+
 
                 }
                 {
@@ -132,7 +139,7 @@ const PostItemUser = (props) => {
                                     <button className='deleterq__bt' onClick={() => dispatch(delete_post(id_post))}>Удалить пост</button>
                                 </div>
                                 :
-                                (count_open && count_pr)?
+                                (count_open && count_pr && count_lvl)?
                                     <div className="buttons_st">
                                         <button className='raisepr__bt'   onClick={() => dispatch(raise_priority(id_post))}>Повысить приоритет</button>
                                         <button className='deleterq__bt' onClick={() => dispatch(delete_post(id_post))}>Удалить пост</button>
@@ -144,11 +151,6 @@ const PostItemUser = (props) => {
 
                                         </div>
                                         :
-                                        (!count_pr)?
-                                            <div className="buttons_st">
-                                                <button className='deleterq__bt' onClick={() => dispatch(delete_post(id_post))}>Удалить пост</button>
-                                            </div>
-                                                :
 
                                                 (count_exec)?
                                                     <div className="buttons_st">

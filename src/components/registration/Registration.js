@@ -51,7 +51,7 @@ const Registration = () => {
                 {isCreate &&
                     <div className={"fa"}>
 
-                            <h2>Welcome to <nobr>Glitch Speech!</nobr></h2>
+                            <h2>Welcome to <nobr>RAYBEEVO!</nobr></h2>
                         <div className="fa__header">Вам на почту отправлен код подтверждения</div>
                             <p>Код</p>
                         <Input value={token} setValue={setToken} type="text" placeholder="Введите код..."/>

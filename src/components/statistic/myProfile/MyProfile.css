@@ -22,6 +22,7 @@ a {
 
 .container__profile{
     width: 100%;
+    background-color: white;
 }
 .message-img {
     max-width: 80%;
