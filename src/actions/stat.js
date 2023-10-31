@@ -6,7 +6,7 @@ import {beginLoad, endLoad, inLoad, closeLoad} from "../reducers/loadReducer";
 import {setPost} from "../reducers/postReducer";
 import {setBalance, setLeftPost} from "../reducers/userReducer";
 
-const domen='http://192.168.206.69:8080'
+const domen='http://178.154.244.134:8080'
 
 export function exp_token(){
     let token = localStorage.getItem('token');
